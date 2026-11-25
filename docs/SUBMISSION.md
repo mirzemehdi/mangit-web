@@ -1,15 +1,15 @@
-# Devpost submission: Mangit Lens
+# Devpost submission: Mangit Web
 
 Platform: **Web (Chrome)**. Paste each section into the matching Devpost field.
 
-**Project name:** Mangit Lens
+**Project name:** Mangit Web
 
-**Tagline (≤200 chars):** Translate manga in Chrome. Gemini Nano reads speech bubbles on your own computer; the bubbles it finds hard go to Gemini in the cloud, in parallel.
+**Tagline (≤200 chars):** A free online manga translator that runs on your own computer: Gemini Nano reads speech bubbles in the browser, and only the hard ones go to Gemini in the cloud, in parallel.
 
 **Links**
-- Try it (no install): https://mangit-lens.web.app
-- Code (Apache 2.0): https://github.com/mirzemehdi/mangit-lens
-- Extension build for judges: https://github.com/mirzemehdi/mangit-lens/releases/latest
+- Try it (no install): https://mangit.app/translate/
+- Code (Apache 2.0): https://github.com/mirzemehdi/mangit-web
+- Extension build for judges: https://github.com/mirzemehdi/mangit-web/releases/latest
 - Demo video: (YouTube link)
 
 ---
@@ -20,10 +20,10 @@ We build [Mangit](https://mangit.app), a mobile app that translates manga, manhw
 
 ## What it does
 
-Mangit Lens translates the speech bubbles on the page you're reading and letters the translation over them.
+Mangit Web translates the speech bubbles on the page you're reading and letters the translation over them.
 
 - **Chrome extension:** a side panel with one button (or Alt+T). Works on the page you're on.
-- **Web demo:** drop in a page, or try our demo chapters, at mangit-lens.web.app.
+- **Web demo:** drop in a page, or try our demo chapters, at mangit.app/translate.
 - **Three modes:** Hybrid (default), On-device (nothing leaves the computer, works offline) and Cloud.
 - **You can see where the AI ran:** each bubble has a small mark (on your computer or cloud), the panel counts how many bubble images went to the cloud, and hovering a bubble shows the original text, the translation and which model read it. The hover card also makes it useful for language learners.
 - **Whole chapters from files:** open a PDF, CBZ, CBR or EPUB in the web demo or the extension, translate one page or the whole chapter, and download it translated as CBZ or PDF. Files are read in the browser and never uploaded.
@@ -90,15 +90,15 @@ firebase-ai-logic, gemini-nano, chrome-prompt-api, gemini, agent-platform, fireb
 
 ## For existing apps (required field)
 
-**What we built during the submission period:** everything in the Mangit Lens repository: the bubble detector, hybrid router, Firebase AI Logic integration, the Chrome extension, the web demo, chapter files (PDF, CBZ, CBR, EPUB) with translated downloads, shared glossaries, the benchmark and the test pages. No code from the Mangit apps or their backend is used.
+**What we built during the submission period:** everything in the Mangit Web repository: the bubble detector, hybrid router, Firebase AI Logic integration, the Chrome extension, the web demo, chapter files (PDF, CBZ, CBR, EPUB) with translated downloads, shared glossaries, the benchmark and the test pages. No code from the Mangit apps or their backend is used.
 
-**Core value the existing app provides:** Mangit (live on the App Store and Google Play) gave us the problem knowledge: how readers want bubbles handled, why consistent character names matter, and where translation goes wrong (vertical text, names). Mangit Lens is a separate, open, free project that applies that experience to on-device AI in the browser.
+**Core value the existing app provides:** Mangit (live on the App Store and Google Play) gave us the problem knowledge: how readers want bubbles handled, why consistent character names matter, and where translation goes wrong (vertical text, names). Mangit Web is a separate, open, free project that applies that experience to on-device AI in the browser.
 
 **How widely it's used (optional):** (owner to fill: Mangit installs or readers)
 
 ## Testing instructions for judges
 
-1. Easiest: open https://mangit-lens.web.app, pick a chapter and press **Translate page**. In desktop Chrome with Gemini Nano, Hybrid runs partly on-device; otherwise it uses the cloud.
-2. Extension: download `mangit-lens.zip` from the latest release, unzip, `chrome://extensions` → Developer mode → **Load unpacked**. Open https://mangit-lens.web.app/reader.html and press **Translate this page** in the side panel.
+1. Easiest: open https://mangit.app/translate, pick a chapter and press **Translate page**. In desktop Chrome with Gemini Nano, Hybrid runs partly on-device; otherwise it uses the cloud.
+2. Extension: download `mangit-web-extension.zip` from the latest release, unzip, `chrome://extensions` → Developer mode → **Load unpacked**. Open https://mangit.app/translate/reader.html and press **Translate this page** in the side panel.
 3. For Gemini Nano: Chrome 139+ on desktop, enable `chrome://flags/#prompt-api-for-gemini-nano-multimodal-input`, relaunch, then use **Set up on-device** in the side panel (one-time download).
 4. Try **On-device** with Wi-Fi off: it keeps translating.

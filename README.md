@@ -1,16 +1,36 @@
-# Mangit Lens
+<div align="center">
 
-**Translate manga and comic pages in Chrome. Gemini Nano reads the speech bubbles on your own computer; the bubbles it finds hard go to Gemini in the cloud.**
+<a href="https://mangit.app/?utm_source=github&utm_medium=readme"><img src="https://mangit.app/images/logo-512.webp" alt="Mangit" width="96" height="96" /></a>
 
-Built on the [Firebase AI Logic](https://firebase.google.com/docs/ai-logic) hybrid inference SDK for [#BuildHybridAI](https://firebasehybridaihackathon.devpost.com/).
+# Mangit Web: free online manga translator
 
-- **Try it in the browser:** https://mangit-lens.web.app (no install; uses Gemini Nano when your Chrome has it)
-- **Chrome extension:** translates the page you're reading, from a side panel. [Install](#install-the-extension)
-- **Whole chapters from files:** open a PDF, CBZ, CBR or EPUB (or a single image), translate a page or the whole chapter, and download it translated as CBZ or PDF. Files are read in the browser and never uploaded; in On-device mode no page leaves the computer at all.
+**Translate manga, manhwa and manhua pages in your browser, privately and at no cost.**
+In desktop Chrome, Gemini Nano reads the speech bubbles on your own computer; only the hard ones go to Gemini in the cloud.
+
+### [→ Translate a page now at mangit.app/translate](https://mangit.app/translate/?utm_source=github&utm_medium=readme)
+
+<a href="https://mangit.app/translate/?utm_source=github&utm_medium=readme"><img src="https://mangit.app/translate/og.jpg" alt="Mangit Web translating a Japanese manga page into English in the browser" width="720" /></a>
+
+**Also on your phone:** the Mangit app for iPhone and Android redraws whole chapters in your language.
+
+<a href="https://apps.apple.com/app/mangit/id6756326988?pt=126724485&ct=github&mt=8"><img src="https://mangit.app/images/download_appstore.svg" alt="Download Mangit on the App Store" height="50" /></a>&nbsp;&nbsp;<a href="https://play.google.com/store/apps/details?id=com.measify.mangit&referrer=utm_source%3Dgithub%26utm_medium%3Dreadme%26utm_campaign%3Dmangit_web"><img src="https://mangit.app/images/download_playstore.png" alt="Get Mangit on Google Play" height="50" /></a>
+
+[Website](https://mangit.app/?utm_source=github&utm_medium=readme) · [Web translator](https://mangit.app/translate/?utm_source=github&utm_medium=readme) · [Chrome extension](#install-the-extension) · [How it works](#how-the-hybrid-works) · [Results](#results)
+
+</div>
+
+## What it does
+
+- **Translate manga online:** open [mangit.app/translate](https://mangit.app/translate/?utm_source=github&utm_medium=readme), drop in a page and read it in English or 13 other languages. Japanese, Korean and Chinese manga, manhwa, manhua and webtoon pages. No install, no account.
+- **Whole chapters:** open a PDF, CBZ, CBR or EPUB chapter, translate every page, and download it translated as CBZ or PDF. Files are read in the browser and never uploaded.
+- **Private by default:** in On-device mode Gemini Nano reads every bubble on your computer and nothing leaves it, even offline. Hybrid mode sends only the hard bubbles, such as vertical Japanese, to the cloud.
+- **Mangit for Chrome:** the same engine as a Chrome extension that translates the manga page you're reading on any website, from a side panel. [Install](#install-the-extension)
+- **Learn as you read:** hover any bubble to see the original text, the translation and which model read it.
+- **Open source:** Apache 2.0. Built on the [Firebase AI Logic](https://firebase.google.com/docs/ai-logic) hybrid inference SDK for [#BuildHybridAI](https://firebasehybridaihackathon.devpost.com/).
 
 ## Why
 
-Millions of people read manga, manhwa and manhua that were never translated into their language. Today they either wait, or upload every page they read to a cloud service. Mangit Lens keeps most of that reading on the reader's own computer:
+Millions of people read manga, manhwa and manhua that were never translated into their language. Today they either wait, or upload every page they read to a cloud service. Mangit Web keeps most of that reading on the reader's own computer:
 
 - **Private:** in On-device mode no image leaves the computer, and the panel shows a live count of what did.
 - **Free and offline:** Gemini Nano runs locally at no cost and keeps working without a connection.
@@ -99,9 +119,9 @@ In an emergency (unexpected traffic, a bad model), set `cloud_enabled` to 0 and 
 
 ## Install the extension
 
-1. Download `mangit-lens.zip` from the [latest release](https://github.com/mirzemehdi/mangit-lens/releases/latest) and unzip it.
+1. Download `mangit-web-extension.zip` from the [latest release](https://github.com/mirzemehdi/mangit-web/releases/latest) and unzip it.
 2. Open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and pick the folder.
-3. Open a manga page (or the [demo reader](https://mangit-lens.web.app/reader.html)), click the Mangit Lens icon and press **Translate this page** (Alt+T).
+3. Open a manga page (or the [demo reader](https://mangit.app/translate/reader.html)), click the Mangit Web icon and press **Translate this page** (Alt+T).
 
 For on-device translation, Chrome needs Gemini Nano: Chrome 139+ on desktop, with `chrome://flags/#prompt-api-for-gemini-nano-multimodal-input` enabled. The side panel offers the one-time model download. Without Nano, Hybrid uses the cloud.
 
@@ -141,9 +161,17 @@ src/web.js, web/           hosted demo           src/bench.js    benchmark
 
 ## Built during the hackathon
 
-Everything in this repository was written for #BuildHybridAI (Nov 24–30, 2026). Mangit Lens comes from the team behind [Mangit](https://mangit.app), a mobile app that translates whole manga chapters with cleaned art. Mangit's own code is not part of this project. Lens is the open, free, browser-side counterpart: it brings what we learned about manga translation (bubble handling, consistent names, reading order) to on-device AI.
+Everything in this repository was written for #BuildHybridAI (Nov 24–30, 2026). Mangit Web comes from the team behind [Mangit](https://mangit.app), a mobile app that translates whole manga chapters with cleaned art. Mangit's own code is not part of this project. Mangit Web is the open, free, browser-side counterpart: it brings what we learned about manga translation (bubble handling, consistent names, reading order) to on-device AI.
 
-The demo chapters are original drawings made for testing. Please use Mangit Lens on content you have the right to read.
+The demo chapters are original drawings made for testing. Please use Mangit Web on content you have the right to read.
+
+## Mangit on your phone
+
+Mangit Web writes the translation over each speech bubble. The **Mangit app** for iPhone and Android goes further: it redraws the whole page in your language, cleans the original text from the art, translates sound effects and keeps character names consistent across a chapter, in 31 languages.
+
+<a href="https://apps.apple.com/app/mangit/id6756326988?pt=126724485&ct=github&mt=8"><img src="https://mangit.app/images/download_appstore.svg" alt="Download Mangit on the App Store" height="50" /></a>&nbsp;&nbsp;<a href="https://play.google.com/store/apps/details?id=com.measify.mangit&referrer=utm_source%3Dgithub%26utm_medium%3Dreadme%26utm_campaign%3Dmangit_web"><img src="https://mangit.app/images/download_playstore.png" alt="Get Mangit on Google Play" height="50" /></a>
+
+More at [mangit.app](https://mangit.app/?utm_source=github&utm_medium=readme).
 
 ## License
 

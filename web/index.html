@@ -3,39 +3,271 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mangit Lens: translate manga on your own computer</title>
-    <meta name="description" content="Mangit Lens translates manga and comic speech bubbles in Chrome. Gemini Nano reads them on your computer; bubbles it finds hard go to Gemini in the cloud. Free and open source." />
+    <!--BASE-->
+    <title>Free Online Manga Translator | Mangit</title>
+    <meta name="description" content="Translate manga, manhwa and manhua online, private and at no cost. Open an image or a PDF, CBZ or EPUB chapter. Gemini Nano reads bubbles on your computer." />
+    <link rel="canonical" href="https://mangit.app/translate/" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="alternate" hreflang="en" href="https://mangit.app/translate/" />
+    <link rel="alternate" hreflang="x-default" href="https://mangit.app/translate/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mangit" />
+    <meta property="og:title" content="Free online manga translator that runs on your computer" />
+    <meta property="og:description" content="Translate manga, manhwa and manhua online, private and at no cost. Open an image or a PDF, CBZ or EPUB chapter. Gemini Nano reads bubbles on your computer." />
+    <meta property="og:url" content="https://mangit.app/translate/" />
+    <meta property="og:image" content="https://mangit.app/translate/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mangit Web translating a Japanese manga page in the browser" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free online manga translator that runs on your computer" />
+    <meta name="twitter:description" content="Translate manga, manhwa and manhua online, private and at no cost. Open an image or a PDF, CBZ or EPUB chapter. Gemini Nano reads bubbles on your computer." />
+    <meta name="twitter:image" content="https://mangit.app/translate/og.jpg" />
+    <meta name="theme-color" content="#0b0c0f" />
     <link rel="icon" href="icons/icon32.png" />
     <link rel="preload" href="fonts/sora-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="fonts/baloo-2-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="overlay.css" />
+    <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://mangit.app/translate/#webpage",
+   "url": "https://mangit.app/translate/",
+   "name": "Free Online Manga Translator | Mangit",
+   "description": "Translate manga, manhwa and manhua online, private and at no cost. Open an image or a PDF, CBZ or EPUB chapter. Gemini Nano reads bubbles on your computer.",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@id": "https://mangit.app/#website"
+   },
+   "about": {
+    "@id": "https://mangit.app/translate/#webapp"
+   },
+   "primaryImageOfPage": {
+    "@id": "https://mangit.app/translate/#image"
+   },
+   "breadcrumb": {
+    "@id": "https://mangit.app/translate/#breadcrumb"
+   },
+   "publisher": {
+    "@id": "https://mangit.app/#org"
+   }
+  },
+  {
+   "@type": "ImageObject",
+   "@id": "https://mangit.app/translate/#image",
+   "url": "https://mangit.app/translate/og.jpg",
+   "width": 1200,
+   "height": 630,
+   "caption": "Mangit Web translating a Japanese manga page in the browser, with the original and the model that read it shown for one bubble"
+  },
+  {
+   "@type": "WebApplication",
+   "@id": "https://mangit.app/translate/#webapp",
+   "name": "Mangit Web",
+   "alternateName": [
+    "Mangit online manga translator",
+    "Mangit manga translator"
+   ],
+   "url": "https://mangit.app/translate/",
+   "description": "A free online manga, manhwa and manhua translator. It finds the speech bubbles on a page, reads them with Gemini Nano on the reader's own computer when the browser supports it, sends only hard bubbles to Gemini in the cloud, and writes the translation over each bubble.",
+   "applicationCategory": "MultimediaApplication",
+   "applicationSubCategory": "Manga translator",
+   "operatingSystem": "Any (web browser)",
+   "browserRequirements": "Requires JavaScript. On-device and Hybrid mode need Gemini Nano in desktop Chrome 139 or newer; Cloud mode works in any modern browser.",
+   "isAccessibleForFree": true,
+   "inLanguage": "en",
+   "featureList": [
+    "Translates Japanese, Korean and Chinese manga, manhwa and manhua into 14 languages",
+    "On-device translation with Gemini Nano: pages never leave the computer",
+    "Hybrid mode: hard bubbles such as vertical Japanese go to Gemini in the cloud",
+    "Opens images and whole chapters as PDF, CBZ, CBR or EPUB",
+    "Downloads the translated chapter as CBZ or PDF",
+    "Hover a bubble to see the original text",
+    "Works offline in On-device mode"
+   ],
+   "screenshot": {
+    "@id": "https://mangit.app/translate/#image"
+   },
+   "image": "https://mangit.app/translate/og.jpg",
+   "publisher": {
+    "@id": "https://mangit.app/#org"
+   },
+   "isRelatedTo": [
+    {
+     "@id": "https://mangit.app/#app"
+    },
+    {
+     "@id": "https://mangit.app/translate/#extension"
+    }
+   ],
+   "sameAs": [
+    "https://github.com/mirzemehdi/mangit-web"
+   ]
+  },
+  {
+   "@type": "SoftwareApplication",
+   "@id": "https://mangit.app/translate/#extension",
+   "name": "Mangit: Manga Translator for Chrome",
+   "alternateName": "Mangit for Chrome",
+   "applicationCategory": "BrowserApplication",
+   "operatingSystem": "Google Chrome (desktop)",
+   "description": "A Chrome extension that translates the manga page you are reading on any website from a side panel, with the same hybrid on-device and cloud engine as Mangit Web.",
+   "downloadUrl": "https://github.com/mirzemehdi/mangit-web/releases/latest",
+   "isAccessibleForFree": true,
+   "publisher": {
+    "@id": "https://mangit.app/#org"
+   },
+   "isRelatedTo": {
+    "@id": "https://mangit.app/translate/#webapp"
+   }
+  },
+  {
+   "@type": "SoftwareSourceCode",
+   "@id": "https://mangit.app/translate/#code",
+   "name": "Mangit Web source code",
+   "codeRepository": "https://github.com/mirzemehdi/mangit-web",
+   "license": "https://www.apache.org/licenses/LICENSE-2.0",
+   "programmingLanguage": "JavaScript",
+   "runtimePlatform": "Web browser",
+   "targetProduct": {
+    "@id": "https://mangit.app/translate/#webapp"
+   },
+   "publisher": {
+    "@id": "https://mangit.app/#org"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://mangit.app/translate/#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Mangit",
+     "item": "https://mangit.app/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Free online manga translator",
+     "item": "https://mangit.app/translate/"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://mangit.app/translate/#faq",
+   "inLanguage": "en",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is Mangit Web free to use?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Mangit Web costs nothing and needs no account. It is open source under the Apache 2.0 license."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does Mangit Web upload my manga pages?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Files you open are read in your browser and are never uploaded. In On-device mode, Gemini Nano reads every speech bubble on your computer and nothing leaves it. In Hybrid and Cloud mode, only small crops of speech bubbles are sent to Gemini in the cloud, never the whole page."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which browsers does it work in?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Cloud mode works in any modern browser, including Safari, Firefox and Edge, on computers and phones. On-device and Hybrid mode need Gemini Nano, which desktop Chrome 139 or newer provides. If it is not available, Mangit Web asks before using the cloud."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What can I translate?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Japanese, Korean and Chinese manga, manhwa and manhua pages, into 14 languages including English, Spanish, French, German and Portuguese. Open a single image, or a whole chapter as a PDF, CBZ, CBR or EPUB file, and download the translated chapter as CBZ or PDF."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How accurate is it?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "On our 15 test pages, Hybrid mode read 94% of the text correctly and kept 62% of speech bubbles on the reader's computer. Vertical Japanese is the hardest case for on-device AI, so Hybrid sends those bubbles to the cloud."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is Mangit Web different from the Mangit app?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Mangit Web writes the translation over each speech bubble. The Mangit app for iPhone and Android redraws the whole page in your language, cleans the original text from the art and also translates sound effects."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is there a Chrome extension?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Mangit for Chrome adds a side panel that translates the manga page you are reading on any website, with the same engine and the same privacy."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "Organization",
+   "@id": "https://mangit.app/#org",
+   "name": "Measify Kft",
+   "url": "https://mangit.app/",
+   "logo": "https://mangit.app/images/logo-512.webp"
+  },
+  {
+   "@type": "MobileApplication",
+   "@id": "https://mangit.app/#app",
+   "name": "Mangit",
+   "url": "https://mangit.app/",
+   "operatingSystem": "iOS, Android",
+   "applicationCategory": "BookApplication"
+  }
+ ]
+}
+    </script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "f660a20f82364ab190c357176c10e6e8"}'></script>
   </head>
   <body>
     <header class="site-head">
       <div class="wrap head-row">
-        <a class="brand" href="./" aria-label="Mangit Lens home">
+        <a class="brand" href="https://mangit.app/" aria-label="Mangit home">
           <img src="icons/icon48.png" alt="" width="28" height="28" />
-          <span>Mangit Lens</span>
+          <span>Mangit</span>
         </a>
         <nav class="head-nav" aria-label="Main">
           <a href="#how">How it works</a>
-          <a href="https://github.com/mirzemehdi/mangit-lens" rel="noopener">Source</a>
-          <a class="cta" href="#install">Add to Chrome</a>
+          <a href="https://mangit.app/guides">Guides</a>
+          <a href="#extension">Chrome extension</a>
+          <a class="cta" href="https://mangit.app/?utm_source=mangit_web&amp;utm_medium=header">Get the app</a>
         </nav>
       </div>
     </header>
 
     <main>
       <section class="wrap intro">
-        <h1>Read manga in English, <em>on your own computer</em>.</h1>
+        <h1>The free online manga translator that <em>runs on your computer</em>.</h1>
         <p class="dek">
-          Gemini Nano in Chrome reads each speech bubble locally: private, free and offline. Bubbles it finds hard go to
-          Gemini in the cloud. Try a demo page below, or open a whole chapter: PDF, CBZ, CBR or EPUB.
+          Mangit Web translates the speech bubbles on manga, manhwa and manhua pages, right in your browser. Try a demo page
+          below, or open your own page or a whole PDF, CBZ, CBR or EPUB chapter. In desktop Chrome, Gemini Nano reads the
+          bubbles on your own computer; only the hard ones go to the cloud.
         </p>
       </section>
 
-      <section class="wrap tool" aria-label="Try Mangit Lens">
+      <section class="wrap tool" aria-label="Manga translator">
         <div class="stage-col">
           <div class="pickers">
             <div class="seg" role="group" aria-label="Demo chapter">
@@ -123,22 +355,63 @@
         <p id="totals" class="totals" hidden></p>
       </section>
 
-      <section id="install" class="wrap install">
-        <h2>Use it on any page</h2>
-        <p>The Chrome extension adds a side panel that translates the page you're reading, with the same hybrid engine.</p>
+      <section id="faq" class="wrap faq">
+        <h2>Questions</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Is Mangit Web free to use?</summary>
+            <p>Yes. Mangit Web costs nothing and needs no account. It is open source under the Apache 2.0 license.</p>
+          </details>
+          <details>
+            <summary>Does Mangit Web upload my manga pages?</summary>
+            <p>Files you open are read in your browser and are never uploaded. In On-device mode, Gemini Nano reads every speech bubble on your computer and nothing leaves it. In Hybrid and Cloud mode, only small crops of speech bubbles are sent to Gemini in the cloud, never the whole page.</p>
+          </details>
+          <details>
+            <summary>Which browsers does it work in?</summary>
+            <p>Cloud mode works in any modern browser, including Safari, Firefox and Edge, on computers and phones. On-device and Hybrid mode need Gemini Nano, which desktop Chrome 139 or newer provides. If it is not available, Mangit Web asks before using the cloud.</p>
+          </details>
+          <details>
+            <summary>What can I translate?</summary>
+            <p>Japanese, Korean and Chinese manga, manhwa and manhua pages, into 14 languages including English, Spanish, French, German and Portuguese. Open a single image, or a whole chapter as a PDF, CBZ, CBR or EPUB file, and download the translated chapter as CBZ or PDF.</p>
+          </details>
+          <details>
+            <summary>How accurate is it?</summary>
+            <p>On our 15 test pages, Hybrid mode read 94% of the text correctly and kept 62% of speech bubbles on the reader&#x27;s computer. Vertical Japanese is the hardest case for on-device AI, so Hybrid sends those bubbles to the cloud.</p>
+          </details>
+          <details>
+            <summary>How is Mangit Web different from the Mangit app?</summary>
+            <p>Mangit Web writes the translation over each speech bubble. The Mangit app for iPhone and Android redraws the whole page in your language, cleans the original text from the art and also translates sound effects.</p>
+          </details>
+          <details>
+            <summary>Is there a Chrome extension?</summary>
+            <p>Yes. Mangit for Chrome adds a side panel that translates the manga page you are reading on any website, with the same engine and the same privacy.</p>
+          </details>
+        </div>
+      </section>
+
+      <section id="extension" class="wrap install">
+        <h2>Mangit for Chrome</h2>
+        <p>The Chrome extension adds a side panel that translates the manga page you're reading on any website, with the same engine.</p>
         <ol class="install-steps">
-          <li>Download the latest <a href="https://github.com/mirzemehdi/mangit-lens/releases/latest">mangit-lens.zip</a> and unzip it.</li>
+          <li>Download the latest <a href="https://github.com/mirzemehdi/mangit-web/releases/latest">mangit-lens.zip</a> and unzip it.</li>
           <li>Open <code>chrome://extensions</code>, turn on Developer mode, click <b>Load unpacked</b> and pick the folder.</li>
-          <li>Open a manga page, click the Mangit Lens icon and press <b>Translate this page</b> (or Alt+T).</li>
+          <li>Open a manga page, click the Mangit icon and press <b>Translate this page</b> (or Alt+T).</li>
         </ol>
-        <p class="privacy-note">Privacy: Mangit Lens counts anonymous totals (pages, modes, how many bubbles stayed on your computer) to show how it's used. No images, text, page addresses or names are ever stored.</p>
-        <p class="app-note">Reading on your phone? <a href="https://mangit.app/?utm_source=mangit_lens&amp;utm_medium=web_demo">Mangit</a> translates whole chapters with cleaned art on iOS and Android.</p>
+        <p class="privacy-note">Privacy: Mangit Web counts anonymous totals (pages, modes, how many bubbles stayed on your computer) to show how it's used. No images, text, page addresses or names are ever stored.</p>
+        <div class="app-note">
+          <p><b>Also on your phone.</b> The Mangit app for iPhone and Android redraws whole chapters in your language, with cleaned art and translated sound effects.</p>
+          <div class="stores">
+            <a href="https://apps.apple.com/app/mangit/id6756326988?pt=126724485&amp;ct=web_translator&amp;mt=8"><img src="https://mangit.app/images/download_appstore.svg" alt="Download Mangit on the App Store" width="150" height="50" /></a>
+            <a href="https://play.google.com/store/apps/details?id=com.measify.mangit&amp;referrer=utm_source%3Dweb_translator%26utm_medium%3Dweb%26utm_campaign%3Dmangit_web"><img src="https://mangit.app/images/download_playstore.png" alt="Get Mangit on Google Play" width="168" height="50" /></a>
+          </div>
+        </div>
       </section>
     </main>
 
     <footer class="site-foot">
-      <div class="wrap">
-        <p>Mangit Lens is open source (Apache 2.0). Built with Firebase AI Logic hybrid inference for #BuildHybridAI.</p>
+      <div class="wrap foot-row">
+        <p>Mangit Web is open source (Apache 2.0) on <a href="https://github.com/mirzemehdi/mangit-web">GitHub</a>, built with Firebase AI Logic hybrid inference. By the team behind <a href="https://mangit.app/">Mangit</a>.</p>
+        <nav aria-label="Footer"><a href="https://mangit.app/">Mangit app</a> <a href="https://mangit.app/guides">Guides</a> <a href="https://mangit.app/manga-translator">Manga translator guide</a> <a href="https://mangit.app/privacy-policy">Privacy</a> <a href="https://mangit.app/terms-conditions">Terms</a></nav>
       </div>
     </footer>
     <script type="module" src="app.js"></script>

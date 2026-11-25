@@ -8,7 +8,8 @@
 //   node scripts/build.mjs --prod     web demo without the App Check debug token
 //   node scripts/build.mjs --watch
 import * as esbuild from "esbuild";
-import { cpSync, existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 
 const watch = process.argv.includes("--watch");
 const prod = process.argv.includes("--prod");
@@ -90,6 +91,13 @@ const builds = [
 // ---- web demo: its own Firebase web app, App Check via reCAPTCHA Enterprise.
 rmSync("web-dist", { recursive: true, force: true });
 cpSync("web", "web-dist", { recursive: true });
+// Hosted under a sub-path (mangit.app/translate/): relative URLs need a base.
+{
+  const base = process.env.WEB_BASE;
+  const page = join("web-dist", "index.html");
+  writeFileSync(page, readFileSync(page, "utf8").replace("<!--BASE-->", base ? `<base href="${base}" />` : ""));
+  const reader = join("web-dist", "reader.html");
+}
 cpSync("src/overlay.css", "web-dist/overlay.css");
 cpSync("bench/data", "web-dist/data", { recursive: true });
 cpSync("bench/reader.html", "web-dist/reader.html");

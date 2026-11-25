@@ -1,5 +1,5 @@
 {
-  "name": "mangit-lens",
+  "name": "mangit-web",
   "version": "0.1.0",
   "private": true,
   "description": "Translate manga pages in Chrome with hybrid on-device + cloud AI (Firebase AI Logic).",
@@ -8,7 +8,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "watch": "node scripts/build.mjs --watch",
-    "zip": "node scripts/build.mjs && cd dist && zip -qr ../mangit-lens.zip .",
+    "zip": "node scripts/build.mjs && cd dist && zip -qr ../mangit-web-extension.zip . -x '*.map'",
     "bench": "node scripts/build.mjs && npx --yes http-server bench-dist -p 5178 -c-1",
     "test:detector": "node scripts/test-detector.mjs"
   },

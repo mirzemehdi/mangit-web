@@ -1,5 +1,5 @@
 // Anonymous usage stats: one small record per translation run, so we can see
-// how Mangit Lens is used (pages, modes, how much stays on-device) without
+// how Mangit Web is used (pages, modes, how much stays on-device) without
 // collecting anything about what people read. No images, text, URLs, titles
 // or names; only counts. A function (functions/index.js) rolls the records up
 // into daily totals and deletes them.

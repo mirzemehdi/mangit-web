@@ -43,7 +43,7 @@ const ui = {
 
 const ROUTE_HELP = {
   auto: "Gemini Nano reads each bubble on your computer. Only bubbles it's unsure about, or pages it can't parse, go to the cloud.",
-  device: "Everything stays on your computer. Works offline. Needs Gemini Nano in Chrome.",
+  device: "Everything stays on your computer. Works offline. Needs Gemini Nano (desktop Chrome).",
   cloud: "Gemini in the cloud reads every bubble at once. Fastest, and best for colour webtoons and unusual layouts.",
 };
 

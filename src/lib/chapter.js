@@ -31,7 +31,7 @@ export async function openChapter(file) {
 
 async function openPdf(file, name) {
   const pdfjs = await import("pdfjs-dist");
-  pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdf.worker.min.mjs", location.href).href;
+  pdfjs.GlobalWorkerOptions.workerSrc = new URL("pdf.worker.min.mjs", document.baseURI).href;
   // isEvalSupported: false - never compile PDF font code with eval (defence
   // against crafted PDFs); scripting is never enabled.
   const doc = await pdfjs.getDocument({ data: new Uint8Array(await file.arrayBuffer()), isEvalSupported: false }).promise;
@@ -147,7 +147,7 @@ async function openEpub(file, name) {
 
 async function openRar(file, name) {
   const { createExtractorFromData } = await import("node-unrar-js/esm");
-  const wasmBinary = await (await fetch(new URL("unrar.wasm", location.href))).arrayBuffer();
+  const wasmBinary = await (await fetch(new URL("unrar.wasm", document.baseURI))).arrayBuffer();
   let extractor;
   try {
     extractor = await createExtractorFromData({ wasmBinary, data: await file.arrayBuffer() });

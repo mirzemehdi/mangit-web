@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>桜ヶ丘高校 剣道部 – Chapter 1 | Mangit Lens demo reader</title>
+    <meta name="robots" content="noindex, follow" />
+    <title>桜ヶ丘高校 剣道部 – Chapter 1 | Mangit demo reader</title>
     <style>
       body { margin: 0; background: #1b1b1f; color: #ddd; font: 15px/1.5 system-ui, sans-serif; }
       header { padding: 14px 20px; background: #111; display: flex; gap: 16px; align-items: baseline; }
@@ -25,7 +26,7 @@
       </nav>
     </header>
     <main id="pages"></main>
-    <p class="note">Demo chapters drawn for the Mangit Lens benchmark. Original work, free to use.</p>
+    <p class="note">Demo chapters drawn for the Mangit Web benchmark. Original work, free to use.</p>
     <script>
       const chapters = {
         ja_school: { title: "桜ヶ丘高校 剣道部 – 第1話", lang: "ja" },
@@ -35,7 +36,7 @@
       const c = new URLSearchParams(location.search).get("c") ?? "ja_school";
       const info = chapters[c] ?? chapters.ja_school;
       document.documentElement.lang = info.lang;
-      document.title = `${info.title} | Mangit Lens demo reader`;
+      document.title = `${info.title} | Mangit demo reader`;
       document.getElementById("title").textContent = info.title;
       const main = document.getElementById("pages");
       for (let p = 1; p <= 5; p++) {
