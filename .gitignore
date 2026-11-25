@@ -20,3 +20,4 @@ store/raw/
 store/reddit/*-before.png
 store/reddit/*-after.png
 store/reddit/ja_school-ui.png
+store/test-*/

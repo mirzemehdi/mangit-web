@@ -46,20 +46,38 @@ export async function translateCanvas(page, opts) {
     tally = newTally(),
     onProgress = () => {},
     onBubble = () => {},
+    // skip(box): true for bubbles not to translate this time (already done,
+    // or cut off at the screen edge). Box is in fractions of the page (0..1).
+    skip = null,
+    // Auto-translate turns this off: asking the cloud to find bubbles on a
+    // page with none would cost a call on every scroll.
+    allowWholePage = true,
+    // onChecked(boxes): every region looked at this run (fractions of the
+    // page), including ones with no text, so they aren't sent again.
+    onChecked = () => {},
   } = opts;
 
   const small = crop(page, 0, 0, page.width, page.height, DETECT_MAX_SIDE);
   const ctx = small.getContext("2d", { willReadFrequently: true });
   trace("detect start");
-  const regions = detectBubbles(ctx.getImageData(0, 0, small.width, small.height));
+  let regions = detectBubbles(ctx.getImageData(0, 0, small.width, small.height));
   trace(`detect done: ${regions.length} regions, vertical ${regions.filter((r) => r.vertical).length}`);
   const k = page.width / small.width;
+  const found = regions.length;
+  if (skip) {
+    regions = regions.filter(
+      (r) => !skip({ x: r.x / small.width, y: r.y / small.height, w: r.w / small.width, h: r.h / small.height }),
+    );
+  }
 
-  if (regions.length < config.min_bubbles_for_device_path) {
+  if (found < config.min_bubbles_for_device_path) {
+    if (!allowWholePage) return [];
     if (route === "device") throw new Error("No speech bubbles found on this page for on-device mode.");
     if (!online) throw new Error("offline");
     return wholePage();
   }
+
+  if (!regions.length) return []; // everything in view is already translated
 
   const useDevice =
     route === "device" ||
@@ -102,6 +120,7 @@ export async function translateCanvas(page, opts) {
       finished++;
       onProgress(`Translated ${finished} of ${regions.length} bubbles…`, finished / regions.length);
     });
+    onChecked(regions.map((r) => ({ x: r.x / small.width, y: r.y / small.height, w: r.w / small.width, h: r.h / small.height })));
     return results.filter(Boolean);
   }
 
@@ -173,6 +192,7 @@ export async function translateCanvas(page, opts) {
   trace(`waiting for ${secondOpinions.length} second opinions + ${cloudFirst.length} cloud-first`);
   await Promise.all([...secondOpinions, ...cloudFirst]);
   trace("page done");
+  onChecked(regions.map((r) => ({ x: r.x / small.width, y: r.y / small.height, w: r.w / small.width, h: r.h / small.height })));
   return results.filter(Boolean);
 
   async function bubblePart(r, maxSide) {

@@ -42,7 +42,10 @@ import { refitLayer, renderBubbles } from "./lib/overlay.js";
       const visH = bottom - top;
       if (visW < MIN_SIDE * 0.6 || visH < MIN_SIDE * 0.6) continue;
       if (!el.dataset.lensId) el.dataset.lensId = String(nextId++);
+      const done = overlays.get(el.dataset.lensId);
       out.push({
+        // Bubbles already translated on this image, so they aren't paid for twice.
+        done: done ? { target: done.lang, boxes: [...(done.bubbles ?? []).map((b) => b.box), ...(done.checked ?? [])] } : null,
         id: el.dataset.lensId,
         // Element box and its visible part, in viewport CSS pixels.
         rect: { x: r.left, y: r.top, w: r.width, h: r.height },
@@ -81,11 +84,22 @@ import { refitLayer, renderBubbles } from "./lib/overlay.js";
     layer.style.height = `${r.height}px`;
   }
 
-  // Bubbles arrive with boxes as fractions (0..1) of the target element.
-  function render(id, bubbles) {
+  const overlap = (a, b) => {
+    const w = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+    const h = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+    return w > 0 && h > 0 ? (w * h) / Math.min(a.w * a.h, b.w * b.h) : 0;
+  };
+
+  // Bubbles arrive with boxes as fractions (0..1) of the target element. New
+  // bubbles are added to the ones already drawn on this image (scrolling down
+  // a long strip), replacing any they overlap; a new language starts over.
+  function render(id, bubbles, lang) {
     const entry = layerFor(id);
     if (!entry) return false;
-    renderBubbles(entry.layer, bubbles);
+    const kept = entry.lang === lang ? (entry.bubbles ?? []).filter((old) => !bubbles.some((b) => overlap(old.box, b.box) > 0.4)) : [];
+    entry.bubbles = [...kept, ...bubbles];
+    entry.lang = lang;
+    renderBubbles(entry.layer, entry.bubbles);
     entry.layer.classList.toggle("mangit-lens-hidden", showOriginal);
     return true;
   }
@@ -99,6 +113,18 @@ import { refitLayer, renderBubbles } from "./lib/overlay.js";
   }
 
   window.addEventListener("resize", () => requestAnimationFrame(refit));
+
+  // Tell the side panel when scrolling stops; with auto-translate on, it
+  // translates whatever new bubbles came into view.
+  let scrollTimer = 0;
+  window.addEventListener(
+    "scroll",
+    () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => chrome.runtime.sendMessage({ type: "lens/scrolled" }).catch(() => {}), 700);
+    },
+    { passive: true },
+  );
   new ResizeObserver(() => requestAnimationFrame(refit)).observe(document.body);
 
   chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
@@ -107,8 +133,20 @@ import { refitLayer, renderBubbles } from "./lib/overlay.js";
         sendResponse(visibleImages());
         break;
       case "lens/render":
-        sendResponse({ ok: render(msg.id, msg.bubbles) });
+        sendResponse({ ok: render(msg.id, msg.bubbles, msg.lang) });
         break;
+      case "lens/checked": {
+        // Regions already looked at (with or without text), per language.
+        const entry = overlays.get(msg.id) ?? (layerFor(msg.id) && overlays.get(msg.id));
+        if (entry) {
+          if (entry.checkedLang !== msg.lang) entry.checked = [];
+          entry.checked = [...(entry.checked ?? []), ...msg.boxes].slice(-300);
+          entry.checkedLang = msg.lang;
+          if (!entry.lang) entry.lang = msg.lang;
+        }
+        sendResponse({ ok: Boolean(entry) });
+        break;
+      }
       case "lens/toggle":
         showOriginal = !showOriginal;
         for (const { layer } of overlays.values()) {

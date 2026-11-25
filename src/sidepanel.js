@@ -21,6 +21,7 @@ for (const b of document.querySelectorAll("[data-feedback]")) {
 }
 const ui = {
   access: $("access"),
+  auto: $("auto"),
   status: $("device-status"),
   translate: $("translate"),
   progress: $("progress"),
@@ -59,6 +60,9 @@ let config;
 let translator;
 let deviceState = "checking";
 let busy = false;
+let autoPending = false; // an auto run asked for while another run was busy
+const autoSites = new Set(); // sites the reader translated by hand
+const originByTab = new Map(); // last site seen in each tab, to ask for just that site
 let glossary = {}; // merged: shared entries, then the reader's own on top
 let mine = {};
 let shared = {};
@@ -85,9 +89,43 @@ async function init() {
     });
   }
   ui.translate.addEventListener("click", () => translateVisible());
+
+  // Auto-translate: on by default. Scrolling translates new bubbles on a page
+  // the reader already translated; with all-sites access, the next pages of
+  // the same site translate as they load.
+  const stored = await chrome.storage.local.get(["autoTranslate", "autoSites"]);
+  ui.auto.checked = stored.autoTranslate !== false;
+  for (const h of stored.autoSites ?? []) autoSites.add(h);
+  ui.auto.addEventListener("change", () => {
+    chrome.storage.local.set({ autoTranslate: ui.auto.checked });
+    if (ui.auto.checked) {
+      // Ask now, from the click, for the site being read, so its next
+      // chapters translate without a prompt. Only that site.
+      const origins = [...new Set(originByTab.values())].map((o) => `${o}/*`);
+      if (origins.length) chrome.permissions.request({ origins }).catch(() => false);
+      say("Auto-translate is on. Scroll and new bubbles translate by themselves.");
+    } else say("Auto-translate is off.");
+  });
+  chrome.runtime.onMessage.addListener(async (msg, sender) => {
+    if (msg?.type !== "lens/scrolled" || !ui.auto.checked) return;
+    const tab = await activeTab();
+    if (sender.tab?.id === tab?.id) translateVisible({ auto: true });
+  });
+  chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
+    if (info.status !== "complete" || !ui.auto.checked || !tab.active || !tab.url) return;
+    const active = await activeTab();
+    if (active?.id !== tabId) return;
+    let host = "";
+    try {
+      host = new URL(tab.url).hostname;
+    } catch {}
+    if (!autoSites.has(host)) return;
+    setTimeout(() => translateVisible({ auto: true }), 1200); // let images load
+  });
   // Must call permissions.request straight from the click (a user gesture).
   $("access-allow").addEventListener("click", () => {
-    chrome.permissions.request({ origins: ["<all_urls>"] }).then((granted) => {
+    const origin = ui.access.dataset.origin;
+    chrome.permissions.request({ origins: [origin ? `${origin}/*` : "<all_urls>"] }).then((granted) => {
       if (!granted) return say("No problem. Click the Mangit icon or press Alt+T on a page, then Translate.");
       ui.access.hidden = true;
       loadGlossary();
@@ -259,8 +297,11 @@ async function injectContentScript(tabId) {
   await chrome.scripting.executeScript({ target: { tabId }, files: ["content.js"] });
 }
 
-async function translateVisible() {
-  if (busy) return;
+async function translateVisible({ auto = false } = {}) {
+  if (busy) {
+    if (auto) autoPending = true;
+    return;
+  }
   // A click before setup finishes waits for it instead of being lost.
   if (!translator) {
     say("Getting ready…");
@@ -271,7 +312,7 @@ async function translateVisible() {
   ui.translate.disabled = true;
   const started = performance.now();
   const tally = { ...newTally(), total: 0 };
-  resetStats();
+  if (!auto) resetStats();
 
   try {
     const chosen = await decideRoute();
@@ -288,7 +329,19 @@ async function translateVisible() {
     });
     const scan = await sendToTab(tab.id, { type: "lens/scan" });
     if (!scan?.images?.length) {
+      if (auto) return;
       throw new UserFacingError("No manga page in view. Scroll so the page fills the screen.");
+    }
+    if (tab.url) {
+      try {
+        originByTab.set(tab.id, new URL(tab.url).origin);
+      } catch {}
+    }
+    if (!auto && tab.url) {
+      try {
+        autoSites.add(new URL(tab.url).hostname);
+        chrome.storage.local.set({ autoSites: [...autoSites].slice(-50) });
+      } catch {}
     }
     say("Capturing the page…");
     // Chrome only captures a tab that's visible on screen; don't wait forever.
@@ -312,7 +365,7 @@ async function translateVisible() {
     for (const image of scan.images) {
       const vis = image.visible;
       const page = crop(shot, vis.x * scale, vis.y * scale, vis.w * scale, vis.h * scale);
-      const results = await translateImage(page, { target, chosen, online, tally, image, tab }).catch(
+      const results = await translateImage(page, { target, chosen, online, tally, image, tab, auto }).catch(
         (err) => {
           throw friendlyOffline(err);
         },
@@ -321,6 +374,10 @@ async function translateVisible() {
     }
 
     const seconds = ((performance.now() - started) / 1000).toFixed(1);
+    if (auto && !tally.total) {
+      say("Auto-translate on. Everything in view is translated.");
+      return;
+    }
     showStats(tally, seconds);
     recordUsage({ mode: chosen, pages: scan.images.length, device: tally.device, cloud: tally.cloud, seconds: Number(seconds), chapter: false });
     noteRun({ mode: chosen, target, pages: scan.images.length, bubbles: tally.total, device: tally.device, cloud: tally.cloud, seconds: Number(seconds), chapter: false });
@@ -332,6 +389,10 @@ async function translateVisible() {
     );
   } catch (err) {
     if (err instanceof AccessNeededError) {
+      const tab = await activeTab().catch(() => null);
+      const origin = originByTab.get(tab?.id) ?? "";
+      ui.access.dataset.origin = origin;
+      $("access-allow").textContent = origin ? `Allow on ${new URL(origin).hostname}` : "Allow on all sites";
       ui.access.hidden = false;
       say("Mangit needs your OK to read this page.");
       return;
@@ -343,20 +404,46 @@ async function translateVisible() {
     ui.translate.disabled = false;
     setMeter(0);
     refreshDeviceState();
+    if (autoPending) {
+      autoPending = false;
+      setTimeout(() => translateVisible({ auto: true }), 300);
+    }
   }
 }
 
-async function translateImage(page, { target, chosen, online, tally, image, tab }) {
+async function translateImage(page, { target, chosen, online, tally, image, tab, auto = false }) {
   const toElementBox = (b) => ({
     x: (image.visible.x - image.rect.x + b.x * image.visible.w) / image.rect.w,
     y: (image.visible.y - image.rect.y + b.y * image.visible.h) / image.rect.h,
     w: (b.w * image.visible.w) / image.rect.w,
     h: (b.h * image.visible.h) / image.rect.h,
   });
+  // Skip bubbles already translated into this language, and bubbles cut off
+  // at the edge of the screen (they're translated whole once scrolled in).
+  const done = image.done?.target === target ? image.done.boxes : [];
+  const cut = {
+    top: image.visible.y > image.rect.y + 1,
+    bottom: image.visible.y + image.visible.h < image.rect.y + image.rect.h - 1,
+    left: image.visible.x > image.rect.x + 1,
+    right: image.visible.x + image.visible.w < image.rect.x + image.rect.w - 1,
+  };
+  const overlap = (a, b) => {
+    const w = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+    const h = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+    return w > 0 && h > 0 ? (w * h) / Math.min(a.w * a.h, b.w * b.h) : 0;
+  };
+  const EDGE = 0.012;
+  const skip = (b) =>
+    (cut.top && b.y < EDGE) ||
+    (cut.bottom && b.y + b.h > 1 - EDGE) ||
+    (cut.left && b.x < EDGE) ||
+    (cut.right && b.x + b.w > 1 - EDGE) ||
+    done.some((d) => overlap(d, toElementBox(b)) > 0.4);
   const render = (bubbles) =>
     sendToTab(tab.id, {
       type: "lens/render",
       id: image.id,
+      lang: target,
       bubbles: bubbles.map((b) => ({
         translation: b.translation,
         original: b.original,
@@ -378,6 +465,10 @@ async function translateImage(page, { target, chosen, online, tally, image, tab 
     deviceReady: deviceState === "available",
     glossary,
     tally,
+    skip,
+    allowWholePage: !auto && !done.length,
+    onChecked: (boxes) =>
+      sendToTab(tab.id, { type: "lens/checked", id: image.id, lang: target, boxes: boxes.map(toElementBox) }).catch(() => {}),
     onProgress: (text, fraction) => {
       say(text);
       setMeter(fraction);

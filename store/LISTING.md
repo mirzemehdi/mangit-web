@@ -1,6 +1,6 @@
 # Chrome Web Store listing: Mangit
 
-Upload: `store/mangit-chrome-0.2.1.zip`
+Upload: `store/mangit-chrome-0.2.2.zip`
 
 ## Store listing tab
 
@@ -37,6 +37,7 @@ MADE FOR READING
 • Lettering fitted to each bubble's shape
 • Hover a bubble to see the original text and who translated it
 • Character names: add a spelling once and every page uses it, optionally shared with other readers of the series
+• Auto-translate as you scroll: new bubbles and next pages translate by themselves
 • Show original / clear with one click, keyboard shortcut Alt+T
 
 WHOLE CHAPTERS TOO
