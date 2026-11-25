@@ -191,36 +191,10 @@ h3 { margin: 0 0 var(--s1); font-size: 18.5px; font-weight: 600; }
   .demo-pick .seg button { flex: 1 1 auto; font-size: 14px; padding: 0 var(--s2); }
 }
 
-/* Feedback (feedback.js) */
-.lens-feedback { max-width: 460px; }
-.lens-feedback form { display: grid; gap: 10px; margin: 0; }
-.lens-feedback h2, .lens-feedback p { margin: 0; }
-.lens-fb-kinds { display: flex; flex-wrap: wrap; gap: 6px; border: 0; padding: 0; margin: 2px 0; }
-.lens-fb-kinds label { position: relative; }
-.lens-fb-kinds input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-.lens-fb-kinds span { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 999px; font-size: 14px; color: #c9ced6; }
-.lens-fb-kinds input:checked + span { border-color: #3fe0ff; color: #eef0f3; background: rgb(63 224 255 / 0.12); }
-.lens-fb-kinds input:focus-visible + span { outline: 2px solid #3fe0ff; outline-offset: 2px; }
-.lens-fb-label { font-size: 14px; color: #c9ced6; }
-.lens-fb-label span { color: #a0a6b1; }
-.lens-feedback textarea, .lens-feedback input[type=email] { width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 10px; background: #0b0c0f; color: #eef0f3; font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; resize: vertical; }
-.lens-feedback textarea:focus-visible, .lens-feedback input[type=email]:focus-visible { outline: 2px solid #3fe0ff; outline-offset: 1px; }
-.lens-feedback .lens-dialog-skip { align-items: flex-start; margin: 0; font-size: 13.5px; }
-.lens-feedback .lens-dialog-skip input { margin-top: 2px; flex: none; }
-.lens-fb-status { min-height: 1.2em; font-size: 14px; color: #ffc15e; }
-.lens-feedback button:disabled { opacity: 0.6; cursor: default; }
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.lens-ask { display: grid; gap: 8px; margin: 10px 0; padding: 12px 14px; border: 1px solid rgb(63 224 255 / 0.35); border-radius: 12px; background: rgb(63 224 255 / 0.07); font-size: 14px; color: #c9ced6; }
-.lens-ask p { margin: 0; }
-.lens-ask strong { color: #eef0f3; }
-.lens-ask-actions { display: flex; flex-wrap: wrap; gap: 6px; }
-.lens-ask-actions button { min-height: 40px; padding: 0 14px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 10px; background: #15171b; color: #eef0f3; font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; cursor: pointer; }
-.lens-ask-actions button:hover { border-color: #3fe0ff; }
-.lens-ask-actions .lens-ask-close { margin-left: auto; min-width: 40px; padding: 0; color: #a0a6b1; }
-.lens-ask-actions button:focus-visible { outline: 2px solid #3fe0ff; outline-offset: 2px; }
 .link-btn { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: underline; cursor: pointer; }
-.nav-btn { min-height: 40px; padding: 0 14px; border: 1px solid var(--line, rgb(255 255 255 / 0.16)); border-radius: 999px; background: none; color: var(--text-2, #c9ced6); font: inherit; cursor: pointer; }
+.nav-btn { white-space: nowrap; min-height: 40px; padding: 0 14px; border: 1px solid var(--line, rgb(255 255 255 / 0.16)); border-radius: 999px; background: none; color: var(--text-2, #c9ced6); font: inherit; cursor: pointer; }
 .nav-btn:hover { color: var(--text, #eef0f3); border-color: #3fe0ff; }
 .nav-btn:focus-visible { outline: 2px solid #3fe0ff; outline-offset: 2px; }
 .feedback-btn { margin-top: 8px; }
 .site-foot .link-btn { color: inherit; }
+@media (max-width: 560px) { .head-nav .nav-btn { display: none; } }

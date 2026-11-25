@@ -22,6 +22,55 @@ const ASKED_KEY = "lens.feedback.askedAt";
 const SENT_KEY = "lens.feedback.sentAt";
 const DAY = 86_400_000;
 
+// The dialog brings its own styles, so it looks right on every page and even
+// when a browser still has an older stylesheet cached.
+const CSS = `
+.lens-feedback, .lens-feedback * { box-sizing: border-box; }
+.lens-feedback { max-width: 460px; width: calc(100% - 32px); padding: 22px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 14px; background: #15171b; color: #eef0f3; font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+.lens-feedback::backdrop { background: rgb(0 0 0 / 0.6); }
+.lens-feedback form { display: flex; flex-direction: column; gap: 10px; margin: 0; }
+.lens-feedback h2 { margin: 0; font: 700 18px/1.3 "Sora", system-ui, sans-serif; letter-spacing: 0; text-transform: none; color: #eef0f3; }
+.lens-feedback p { margin: 0; color: #c9ced6; }
+.lens-feedback .lens-fb-kinds { display: flex; flex-wrap: wrap; gap: 6px; border: 0; padding: 0; margin: 4px 0; min-width: 0; }
+.lens-feedback .lens-fb-kinds label { position: relative; display: inline-flex; margin: 0; }
+.lens-feedback .lens-fb-kinds input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.lens-feedback .lens-fb-kinds span { display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 999px; font-size: 14px; color: #c9ced6; white-space: nowrap; }
+.lens-feedback .lens-fb-kinds input:checked + span { border-color: #3fe0ff; color: #eef0f3; background: rgb(63 224 255 / 0.12); }
+.lens-feedback .lens-fb-kinds input:focus-visible + span { outline: 2px solid #3fe0ff; outline-offset: 2px; }
+.lens-feedback .lens-fb-label { display: block; font-size: 14px; color: #c9ced6; margin-top: 2px; }
+.lens-feedback .lens-fb-label span { color: #a0a6b1; }
+.lens-feedback textarea, .lens-feedback input[type=email] { display: block; width: 100%; padding: 10px 12px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 10px; background: #0b0c0f; color: #eef0f3; font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+.lens-feedback textarea { min-height: 110px; resize: vertical; }
+.lens-feedback textarea::placeholder, .lens-feedback input::placeholder { color: #80868f; }
+.lens-feedback textarea:focus-visible, .lens-feedback input[type=email]:focus-visible { outline: 2px solid #3fe0ff; outline-offset: 1px; }
+.lens-feedback .lens-fb-ctx { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; color: #a0a6b1; }
+.lens-feedback .lens-fb-ctx input { width: 16px; height: 16px; margin: 3px 0 0; flex: none; }
+.lens-feedback .lens-fb-status { min-height: 1.2em; font-size: 14px; color: #ffc15e; }
+.lens-feedback .lens-fb-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.lens-feedback .lens-fb-actions button { min-height: 44px; padding: 0 16px; border-radius: 10px; font: 600 15px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; cursor: pointer; }
+.lens-feedback .lens-fb-primary { background: #3fe0ff; border: 1px solid #3fe0ff; color: #06222a; }
+.lens-feedback .lens-fb-primary:hover { background: #7ae9ff; }
+.lens-feedback .lens-fb-secondary { background: none; border: 1px solid rgb(255 255 255 / 0.16); color: #eef0f3; }
+.lens-feedback .lens-fb-actions button:focus-visible { outline: 2px solid #3fe0ff; outline-offset: 2px; }
+.lens-feedback button:disabled { opacity: 0.6; cursor: default; }
+.lens-feedback .lens-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.lens-ask { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; padding: 12px 14px; border: 1px solid rgb(63 224 255 / 0.35); border-radius: 12px; background: rgb(63 224 255 / 0.07); font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; color: #c9ced6; }
+.lens-ask p { margin: 0; }
+.lens-ask strong { color: #eef0f3; }
+.lens-ask-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.lens-ask-actions button { min-height: 40px; padding: 0 14px; border: 1px solid rgb(255 255 255 / 0.16); border-radius: 10px; background: #15171b; color: #eef0f3; font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; cursor: pointer; }
+.lens-ask-actions button:hover { border-color: #3fe0ff; }
+.lens-ask-actions .lens-ask-close { margin-left: auto; min-width: 40px; padding: 0; color: #a0a6b1; }
+.lens-ask-actions button:focus-visible { outline: 2px solid #3fe0ff; outline-offset: 2px; }
+`;
+function injectStyles() {
+  if (document.getElementById("lens-feedback-style")) return;
+  const el = document.createElement("style");
+  el.id = "lens-feedback-style";
+  el.textContent = CSS;
+  document.head.appendChild(el);
+}
+
 let lastRun = null; // { mode, target, bubbles, device, cloud, seconds, chapter, pages }
 let lastSent = 0;
 
@@ -59,25 +108,26 @@ async function send({ kind, message, rating = "none", email = "", withContext = 
  */
 export function openFeedback({ kind = "bug", rating = "none", storage, title } = {}) {
   const dlg = document.createElement("dialog");
-  dlg.className = "lens-dialog lens-feedback";
+  injectStyles();
+  dlg.className = "lens-feedback";
   dlg.setAttribute("aria-labelledby", "lens-fb-title");
   dlg.innerHTML = `
     <form method="dialog" novalidate>
       <h2 id="lens-fb-title"></h2>
       <p>Bug, wrong translation, idea, anything. We read every message and fix things fast.</p>
-      <fieldset class="lens-fb-kinds"><legend class="sr-only">What is it about?</legend></fieldset>
+      <fieldset class="lens-fb-kinds"><legend class="lens-sr">What is it about?</legend></fieldset>
       <label class="lens-fb-label" for="lens-fb-msg">Your message</label>
       <textarea id="lens-fb-msg" rows="5" maxlength="2000" required placeholder="What happened? Which site or file? What did you expect?"></textarea>
       <label class="lens-fb-label" for="lens-fb-email">Email <span>(optional, only if you'd like a reply)</span></label>
       <input id="lens-fb-email" type="email" maxlength="200" autocomplete="email" />
-      <label class="lens-dialog-skip"><input id="lens-fb-ctx" type="checkbox" checked /> Include details of my last translation (mode, language, timings, browser). No images or text.</label>
+      <label class="lens-fb-ctx"><input id="lens-fb-ctx" type="checkbox" checked /> Include details of my last translation (mode, language, timings, browser). No images or text.</label>
       <p class="lens-fb-status" role="status" aria-live="polite"></p>
-      <div class="lens-dialog-actions">
-        <button type="button" class="lens-dialog-secondary" data-act="cancel">Cancel</button>
-        <button type="submit" class="lens-dialog-primary">Send feedback</button>
+      <div class="lens-fb-actions">
+        <button type="button" class="lens-fb-secondary" data-act="cancel">Cancel</button>
+        <button type="submit" class="lens-fb-primary">Send</button>
       </div>
     </form>`;
-  dlg.querySelector("h2").textContent = title ?? "Send feedback";
+  dlg.querySelector("h2").textContent = title ?? "Send us feedback";
   const kinds = dlg.querySelector(".lens-fb-kinds");
   for (const k of KINDS) {
     const l = document.createElement("label");
@@ -116,7 +166,7 @@ export function openFeedback({ kind = "bug", rating = "none", storage, title } =
       dlg.querySelector("form").innerHTML = `
         <h2>Thank you</h2>
         <p>Got it. Every message is read by the people who build Mangit.</p>
-        <div class="lens-dialog-actions"><button type="button" class="lens-dialog-primary">Close</button></div>`;
+        <div class="lens-fb-actions"><button type="button" class="lens-fb-primary">Close</button></div>`;
       dlg.querySelector("button").addEventListener("click", close);
       dlg.querySelector("button").focus();
     } catch (err) {
@@ -141,6 +191,7 @@ export function openFeedback({ kind = "bug", rating = "none", storage, title } =
  */
 export async function maybeAskForFeedback({ host, storage }) {
   if (!host || host.querySelector(".lens-ask")) return;
+  injectStyles();
   const now = Date.now();
   const asked = (await storage.get(ASKED_KEY)) ?? 0;
   const sent = (await storage.get(SENT_KEY)) ?? 0;

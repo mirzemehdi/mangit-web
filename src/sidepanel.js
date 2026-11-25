@@ -14,6 +14,11 @@ import { newTally, translateCanvas } from "./lib/pipeline.js";
 import { loadShared, seriesFromTitle, seriesKey, shareEntry } from "./lib/sharedGlossary.js";
 
 const $ = (id) => document.getElementById(id);
+
+// Feedback works from the first moment, before the translator is set up.
+for (const b of document.querySelectorAll("[data-feedback]")) {
+  b.addEventListener("click", () => openFeedback({ storage }));
+}
 const ui = {
   status: $("device-status"),
   translate: $("translate"),
@@ -529,8 +534,4 @@ async function addGlossaryEntry(event) {
 async function saveMine() {
   await chrome.storage.local.set({ [`glossary:${seriesKey(seriesName)}`]: mine });
   merge();
-}
-
-for (const b of document.querySelectorAll("[data-feedback]")) {
-  b.addEventListener("click", () => openFeedback({ storage }));
 }

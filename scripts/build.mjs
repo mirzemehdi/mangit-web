@@ -103,9 +103,17 @@ cpSync("web", "web-dist", { recursive: true });
   const base = process.env.WEB_BASE;
   for (const f of ["index.html", "privacy.html"]) {
     const page = join("web-dist", f);
-    writeFileSync(page, readFileSync(page, "utf8").replace("<!--BASE-->", base ? `<base href="${base}" />` : ""));
+    // A build stamp on app.css / app.js so browsers never mix a new page with
+    // an old cached stylesheet or script.
+    const v = Date.now().toString(36);
+    writeFileSync(
+      page,
+      readFileSync(page, "utf8")
+        .replace("<!--BASE-->", base ? `<base href="${base}" />` : "")
+        .replace('href="app.css"', `href="app.css?v=${v}"`)
+        .replace('src="app.js"', `src="app.js?v=${v}"`),
+    );
   }
-  const reader = join("web-dist", "reader.html");
 }
 cpSync("src/overlay.css", "web-dist/overlay.css");
 cpSync("bench/data", "web-dist/data", { recursive: true });

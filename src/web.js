@@ -16,6 +16,11 @@ import { maybeAskForFeedback, noteRun, openFeedback } from "./lib/feedback.js";
 const storage = storageFor(process.env.LENS_TARGET);
 
 const $ = (id) => document.getElementById(id);
+
+// Feedback works from the first moment, before the translator is set up.
+for (const b of document.querySelectorAll("[data-feedback]")) {
+  b.addEventListener("click", () => openFeedback({ storage }));
+}
 const ui = {
   page: $("page"),
   layer: $("layer"),
@@ -508,10 +513,4 @@ function renderBench() {
     <thead><tr><th scope="col">Mode</th><th scope="col">Text read right</th><th scope="col">Names right</th><th scope="col">Bubbles on your computer</th><th scope="col">First bubble</th><th scope="col">Whole page</th></tr></thead>
     <tbody>${rows.map((r) => `<tr><th scope="row">${r[0]}</th>${r.slice(1).map((c) => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table>
     <p class="fine">*A whole chapter sent at once hits the per-user rate limit; one page in normal use takes 2–4 s.</p>`;
-}
-
-// ------------------------------------------------------------ feedback
-
-for (const b of document.querySelectorAll("[data-feedback]")) {
-  b.addEventListener("click", () => openFeedback({ storage }));
 }
