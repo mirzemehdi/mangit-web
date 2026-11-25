@@ -20,6 +20,7 @@ for (const b of document.querySelectorAll("[data-feedback]")) {
   b.addEventListener("click", () => openFeedback({ storage }));
 }
 const ui = {
+  access: $("access"),
   status: $("device-status"),
   translate: $("translate"),
   progress: $("progress"),
@@ -84,6 +85,16 @@ async function init() {
     });
   }
   ui.translate.addEventListener("click", () => translateVisible());
+  // Must call permissions.request straight from the click (a user gesture).
+  $("access-allow").addEventListener("click", () => {
+    chrome.permissions.request({ origins: ["<all_urls>"] }).then((granted) => {
+      if (!granted) return say("No problem. Click the Mangit icon or press Alt+T on a page, then Translate.");
+      ui.access.hidden = true;
+      loadGlossary();
+      translateVisible();
+    });
+  });
+  $("access-close").addEventListener("click", () => (ui.access.hidden = true));
   ui.toggle.addEventListener("click", toggleOriginal);
   ui.clear.addEventListener("click", clearPage);
   document.getElementById("open-file").addEventListener("click", () =>
@@ -266,10 +277,15 @@ async function translateVisible() {
     const chosen = await decideRoute();
     if (!chosen) return;
     const tab = await activeTab();
-    if (!tab?.id || !/^https?:|^file:/.test(tab.url ?? "")) {
+    // Without page access Chrome hides the tab's URL, so only reject pages we
+    // can see aren't web pages (chrome://, the Web Store, and so on).
+    if (!tab?.id || (tab.url && !/^https?:|^file:/.test(tab.url))) {
       throw new UserFacingError("Open a manga page in this tab first.");
     }
-    await injectContentScript(tab.id);
+    ui.access.hidden = true;
+    await injectContentScript(tab.id).catch((err) => {
+      throw needsAccess(err) ? new AccessNeededError() : err;
+    });
     const scan = await sendToTab(tab.id, { type: "lens/scan" });
     if (!scan?.images?.length) {
       throw new UserFacingError("No manga page in view. Scroll so the page fills the screen.");
@@ -277,7 +293,9 @@ async function translateVisible() {
     say("Capturing the page…");
     // Chrome only captures a tab that's visible on screen; don't wait forever.
     const dataUrl = await Promise.race([
-      chrome.tabs.captureVisibleTab(tab.windowId, { format: "png" }),
+      chrome.tabs.captureVisibleTab(tab.windowId, { format: "png" }).catch((err) => {
+        throw needsAccess(err) ? new AccessNeededError() : err;
+      }),
       new Promise((_, reject) =>
         setTimeout(() => reject(new UserFacingError("Couldn't capture the page. Keep the manga tab visible and try again.")), 10000),
       ),
@@ -313,6 +331,11 @@ async function translateVisible() {
         : "No text found on this page.",
     );
   } catch (err) {
+    if (err instanceof AccessNeededError) {
+      ui.access.hidden = false;
+      say("Mangit needs your OK to read this page.");
+      return;
+    }
     console.error(err);
     say(err instanceof UserFacingError ? err.message : friendlyError(err));
   } finally {
@@ -436,6 +459,11 @@ async function clearPage() {
 }
 
 class UserFacingError extends Error {}
+class AccessNeededError extends Error {}
+
+// Chrome's errors when the extension has no access to the tab.
+const needsAccess = (err) =>
+  /cannot access|permission|activeTab|host|<all_urls>|not allowed/i.test(String(err?.message ?? err));
 
 function friendlyError(err) {
   const msg = String(err?.message ?? err);

@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Mangit: Manga Translator for Chrome",
   "short_name": "Mangit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Translate manga, manhwa and manhua on any website. Free, about 2 seconds a page, with on-device AI when Chrome has it.",
   "minimum_chrome_version": "139",
   "icons": {
@@ -29,7 +29,7 @@
     { "resources": ["fonts/baloo-2-latin-700-normal.woff2"], "matches": ["<all_urls>"] }
   ],
   "permissions": ["sidePanel", "activeTab", "scripting", "storage"],
-  "host_permissions": ["<all_urls>"],
+  "optional_host_permissions": ["<all_urls>"],
   "commands": {
     "translate-page": {
       "suggested_key": { "default": "Alt+T", "mac": "Alt+T" },

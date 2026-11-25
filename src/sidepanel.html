@@ -32,6 +32,14 @@
       <p id="progress" class="progress" role="status" aria-live="polite"></p>
       <div class="meter" aria-hidden="true"><div id="meter-fill"></div></div>
       <div id="ask"></div>
+      <section id="access" class="access" hidden aria-labelledby="access-title">
+        <h2 id="access-title">Let Mangit read this page</h2>
+        <p>Chrome only lets Mangit see a page after you click the Mangit icon in the toolbar or press <kbd>Alt</kbd> <kbd>T</kbd>, and forgets when the page changes. Allow it on all sites once to skip this step. Mangit still only reads a page when you press Translate.</p>
+        <div class="access-actions">
+          <button id="access-allow" class="primary" type="button">Allow on all sites</button>
+          <button id="access-close" type="button">Not now</button>
+        </div>
+      </section>
 
       <section class="controls" aria-label="Options">
         <fieldset class="segmented">

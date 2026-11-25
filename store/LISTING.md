@@ -1,6 +1,6 @@
 # Chrome Web Store listing: Mangit
 
-Upload: `store/mangit-chrome-0.2.0.zip`
+Upload: `store/mangit-chrome-0.2.1.zip`
 
 ## Store listing tab
 
@@ -71,7 +71,7 @@ Translate the text in manga and comic speech bubbles on the page the user is rea
 - `activeTab`: When the user presses Translate, the extension takes a screenshot of the visible tab to find the speech bubbles on that page.
 - `scripting`: Injects the content script and stylesheet that draw the translated lettering over each bubble on the current page, only after the user presses Translate.
 - `storage`: Saves the user's settings (mode, target language) and the character names they add, on their device.
-- Host permission `<all_urls>`: Manga is read on many different websites. The extension needs to find the manga images and draw translations on whichever site the user is reading when they press Translate. It does not read pages in the background.
+- Host permission: none at install. `<all_urls>` is an optional permission, requested only if the user clicks "Allow on all sites" in the side panel, so they don't have to click the toolbar icon again on every new page. Pages are only read when the user presses Translate.
 
 **Remote code:** No, I am not using remote code. (All JavaScript is in the package. Network calls go to Firebase/Gemini APIs and return data, not code.)
 

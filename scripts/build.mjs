@@ -68,7 +68,15 @@ const common = {
 rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist", { recursive: true });
 cpSync("public", "dist", { recursive: true });
-for (const f of ["manifest.json", "sidepanel.html", "sidepanel.css", "overlay.css"]) cpSync(`src/${f}`, `dist/${f}`);
+for (const f of ["sidepanel.html", "sidepanel.css", "overlay.css"]) cpSync(`src/${f}`, `dist/${f}`);
+// The store package asks for page access only when needed (activeTab, or the
+// optional "all sites" grant). Local/test builds get it at install, because
+// automated runs can't click Chrome's permission prompt.
+{
+  const manifest = JSON.parse(readFileSync("src/manifest.json", "utf8"));
+  if (!store) manifest.host_permissions = ["<all_urls>"];
+  writeFileSync("dist/manifest.json", JSON.stringify(manifest, null, 2));
+}
 const extDefine = defines({
   LENS_TARGET: "extension",
   ...(store ? { APP_CHECK_DEBUG_TOKEN: env.STORE_APP_CHECK_DEBUG_TOKEN } : {}),
