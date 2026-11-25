@@ -22,13 +22,14 @@ We build [Mangit](https://mangit.app), a mobile app that translates manga, manhw
 
 Mangit Web translates the speech bubbles on the page you're reading and letters the translation over them.
 
-- **Chrome extension:** a side panel with one button (or Alt+T). Works on the page you're on.
+- **Chrome extension:** a side panel with one button (or Alt+T). Works on the page you're on, and with **auto-translate** new bubbles translate by themselves as you scroll, without paying twice for bubbles already done. It only asks for access to the site you're reading (activeTab plus an optional per-site grant), never all sites at install. Submitted to the Chrome Web Store.
 - **Web demo:** drop in a page, or try our demo chapters, at mangit.app/translate.
 - **Three modes:** Hybrid (default), On-device (nothing leaves the computer, works offline) and Cloud.
 - **You can see where the AI ran:** each bubble has a small mark (on your computer or cloud), the panel counts how many bubble images went to the cloud, and hovering a bubble shows the original text, the translation and which model read it. The hover card also makes it useful for language learners.
 - **Whole chapters from files:** open a PDF, CBZ, CBR or EPUB in the web demo or the extension, translate one page or the whole chapter, and download it translated as CBZ or PDF. Files are read in the browser and never uploaded.
 - **Anonymous usage stats:** each translation writes counts only (mode, pages, bubbles on-device vs cloud) to Firestore; a function folds them into daily totals and a public all-time counter, then deletes the raw records. No images, text or URLs are stored.
 - **Consistent names:** readers add character names per series; they're shared through Firestore and used by both models.
+- **Feedback loop:** a "Send us feedback" button and a short "How was this translation?" prompt after a translation store reports in Firestore (write-only rules), with the run's mode and timings attached so we can reproduce problems.
 
 ## How we built it
 
@@ -80,7 +81,7 @@ Hybrid gets most of the cloud's accuracy while keeping almost two thirds of bubb
 
 - Bring the same on-device path to the Mangit apps through Firebase AI Logic on Android (Gemini Nano) and iOS (Apple Foundation Models), so phones can translate offline too.
 - Sound effects, and text drawn outside bubbles.
-- A Chrome Web Store release.
+- Public Chrome Web Store listing (submitted, in review).
 
 ## Built with
 
@@ -90,7 +91,7 @@ firebase-ai-logic, gemini-nano, chrome-prompt-api, gemini, agent-platform, fireb
 
 ## For existing apps (required field)
 
-**What we built during the submission period:** everything in the Mangit Web repository: the bubble detector, hybrid router, Firebase AI Logic integration, the Chrome extension, the web demo, chapter files (PDF, CBZ, CBR, EPUB) with translated downloads, shared glossaries, the benchmark and the test pages. No code from the Mangit apps or their backend is used.
+**What we built during the submission period:** everything in the Mangit Web repository: the bubble detector, hybrid router, Firebase AI Logic integration, the Chrome extension (with auto-translate), the web demo, the feedback loop, chapter files (PDF, CBZ, CBR, EPUB) with translated downloads, shared glossaries, the benchmark and the test pages. No code from the Mangit apps or their backend is used.
 
 **Core value the existing app provides:** Mangit (live on the App Store and Google Play) gave us the problem knowledge: how readers want bubbles handled, why consistent character names matter, and where translation goes wrong (vertical text, names). Mangit Web is a separate, open, free project that applies that experience to on-device AI in the browser.
 
@@ -99,6 +100,6 @@ firebase-ai-logic, gemini-nano, chrome-prompt-api, gemini, agent-platform, fireb
 ## Testing instructions for judges
 
 1. Easiest: open https://mangit.app/translate, pick a chapter and press **Translate page**. In desktop Chrome with Gemini Nano, Hybrid runs partly on-device; otherwise it uses the cloud.
-2. Extension: download `mangit-web-extension.zip` from the latest release, unzip, `chrome://extensions` → Developer mode → **Load unpacked**. Open https://mangit.app/translate/reader.html and press **Translate this page** in the side panel.
+2. Extension: download `mangit-web-extension.zip` from the latest release, unzip, `chrome://extensions` → Developer mode → **Load unpacked**. Open https://mangit.app/translate/reader?c=ko_office, click the Mangit icon, choose **Cloud** (or Hybrid with Nano) and press **Translate this page**. Then scroll: with **Auto-translate as I scroll** on, new bubbles translate by themselves.
 3. For Gemini Nano: Chrome 139+ on desktop, enable `chrome://flags/#prompt-api-for-gemini-nano-multimodal-input`, relaunch, then use **Set up on-device** in the side panel (one-time download).
 4. Try **On-device** with Wi-Fi off: it keeps translating.
