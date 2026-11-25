@@ -9,9 +9,6 @@ web-dist/
 bench/e2e/*.cbz
 .fs-test.mjs
 .firebase/
-video/raw/
-video/film/.hyperframes/
-video/film/node_modules/
 video/*.mp4
 bench/e2e/
 functions/node_modules/
