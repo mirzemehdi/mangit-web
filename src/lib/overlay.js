@@ -108,24 +108,80 @@ function setPadding(box) {
   box.style.padding = `${py}px ${px}px`;
 }
 
-// Largest font size that keeps the text inside its bubble.
+// Largest font size that keeps the text inside its bubble. In rounded
+// bubbles a narrower text column often fits bigger text (shorter lines clear
+// the curved top and bottom), so a few column widths are tried and the one
+// that allows the largest size wins.
 function fitText(box, span) {
   setPadding(box);
+  const widths = box.classList.contains("mangit-lens-rect") ? [100] : [100, 88, 76, 64];
+  let best = { size: 0, width: 100 };
+  for (const width of widths) {
+    span.style.maxWidth = `${width}%`;
+    const size = largestFit(box, span);
+    if (size > best.size + 0.25) best = { size, width };
+  }
+  span.style.maxWidth = `${best.width}%`;
+  span.style.fontSize = `${best.size}px`;
+}
+
+function largestFit(box, span) {
   let lo = 6;
   let hi = Math.max(lo, Math.min(28, box.clientHeight));
   while (hi - lo > 0.5) {
     const mid = (lo + hi) / 2;
     span.style.fontSize = `${mid}px`;
     // A word wider than the line overflows the span sideways; text taller
-    // than the bubble's padded inside overflows downward.
-    const fits = span.scrollWidth <= span.clientWidth + 0.5 && span.offsetHeight <= innerHeight(box);
+    // than the bubble's padded inside overflows downward; lines must also
+    // clear the bubble's rounded corners.
+    const fits =
+      span.scrollWidth <= span.clientWidth + 0.5 && span.offsetHeight <= innerHeight(box) && fitsShape(box, span);
     if (fits) lo = mid;
     else hi = mid;
   }
-  span.style.fontSize = `${lo}px`;
+  return lo;
 }
 
 function innerHeight(box) {
   const cs = getComputedStyle(box);
   return box.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
 }
+
+// The white box is rounded (an oval, or a capsule for tall bubbles), so a line
+// that fits the rectangle can still be cut off where the corners curve in.
+// Check every line of text against the rounded shape at that line's height.
+// Radii match overlay.css: 42% for ovals, 48% / 30% for narrow, ~0 for rect.
+function fitsShape(box, span) {
+  if (box.classList.contains("mangit-lens-rect")) return true;
+  const narrow = box.classList.contains("mangit-lens-narrow");
+  const r = box.getBoundingClientRect();
+  if (!r.width || !r.height) return true;
+  const a = r.width / 2;
+  const b = r.height / 2;
+  const cx = r.left + a;
+  const cy = r.top + b;
+  const rx = r.width * (narrow ? 0.48 : 0.42);
+  const ry = r.height * (narrow ? 0.3 : 0.42);
+  const margin = Math.max(2, r.width * 0.04);
+  const range = document.createRange();
+  range.selectNodeContents(span);
+  for (const line of range.getClientRects()) {
+    if (line.width < 1) continue;
+    for (const y of [line.top, line.bottom]) {
+      const half = halfWidthAt(Math.abs(y - cy), a, b, rx, ry);
+      if (Math.max(cx - line.left, line.right - cx) > half - margin) return false;
+    }
+  }
+  return true;
+}
+
+// Half the width of a rounded rectangle (corner radii rx, ry) at distance dy
+// from its centre line.
+function halfWidthAt(dy, a, b, rx, ry) {
+  if (dy >= b) return 0;
+  const straight = b - ry;
+  if (dy <= straight) return a;
+  const t = (dy - straight) / ry;
+  return a - rx + rx * Math.sqrt(1 - t * t);
+}
+
