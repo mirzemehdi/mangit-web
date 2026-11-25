@@ -1,0 +1,674 @@
+{
+ "chapter": "zh_sect",
+ "src": "zh",
+ "vertical": false,
+ "cast": {
+  "waner": "f",
+  "chen": "m",
+  "bai": "f"
+ },
+ "names": {
+  "婉儿": {
+   "char": "waner",
+   "re": "wan['’ -]?er"
+  },
+  "萧辰": {
+   "char": "chen",
+   "re": "xiao[ -]?chen"
+  },
+  "白长老": {
+   "char": "bai",
+   "re": "(grand )?elder (bai|white)|bai (elder|zhanglao)|white elder",
+   "term": true
+  },
+  "青云宗": {
+   "char": null,
+   "term": true,
+   "re": "(qing ?yun|azure[- ]cloud|green[- ]cloud|blue[- ]cloud|cyan[- ]cloud)( sect| school| clan)?"
+  },
+  "筑基": {
+   "char": null,
+   "term": true,
+   "re": "foundation[- ](establishment|building)( stage| realm| phase| period)?|zhuji"
+  },
+  "师兄": {
+   "char": "chen",
+   "term": true,
+   "re": "shixiong|senior brother|big brother|senior"
+  }
+ },
+ "pages": [
+  {
+   "page": 1,
+   "file": "p1.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "-",
+     "kind": "narration",
+     "text": "青云宗，外门。",
+     "vert": true,
+     "vertical": true,
+     "box": [
+      235,
+      77,
+      263,
+      255
+     ],
+     "bubble": [
+      213,
+      59,
+      285,
+      273
+     ],
+     "glyph": 28,
+     "shape": "rect",
+     "gid": 1
+    },
+    {
+     "who": "waner",
+     "text": "萧辰师兄！你终于回来了！",
+     "addr": "waner>chen",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      649,
+      96,
+      828,
+      165
+     ],
+     "bubble": [
+      589,
+      59,
+      889,
+      202
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "chen",
+     "text": "婉儿师妹，我不在的时候，没人欺负你吧？",
+     "addr": "chen>waner",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      140,
+      589,
+      440,
+      658
+     ],
+     "bubble": [
+      54,
+      552,
+      526,
+      695
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "waner",
+     "text": "有白长老在，谁敢？她可是宗门里最强的长老。",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      526,
+      585,
+      854,
+      654
+     ],
+     "bubble": [
+      435,
+      548,
+      946,
+      691
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "kind": "sfx",
+     "text": "轰",
+     "vertical": false,
+     "box": [
+      484,
+      367,
+      596,
+      478
+     ],
+     "bubble": null,
+     "glyph": 97,
+     "angle": 8,
+     "shape": null,
+     "gid": 5
+    }
+   ]
+  },
+  {
+   "page": 2,
+   "file": "p2.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "bai",
+     "text": "萧辰，你已突破筑基期了？",
+     "addr": "bai>chen",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      162,
+      95,
+      342,
+      164
+     ],
+     "bubble": [
+      102,
+      58,
+      403,
+      201
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "chen",
+     "text": "回长老，弟子三日前刚刚突破。",
+     "addr": "chen>bai",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      642,
+      93,
+      849,
+      162
+     ],
+     "bubble": [
+      576,
+      56,
+      915,
+      199
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "bai",
+     "text": "很好。青云宗的未来，就靠你们了。",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      158,
+      589,
+      397,
+      658
+     ],
+     "bubble": [
+      85,
+      552,
+      470,
+      695
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "waner",
+     "kind": "thought",
+     "text": "长老从来没有这样夸过人……此人果然不一般。",
+     "refers": {
+      "chen": "m"
+     },
+     "vert": true,
+     "vertical": true,
+     "box": [
+      680,
+      616,
+      790,
+      825
+     ],
+     "bubble": [
+      634,
+      550,
+      836,
+      892
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "kind": "sfx",
+     "text": "嗡",
+     "vertical": false,
+     "box": [
+      157,
+      826,
+      290,
+      955
+     ],
+     "bubble": null,
+     "glyph": 118,
+     "angle": -9,
+     "shape": null,
+     "gid": 5
+    }
+   ]
+  },
+  {
+   "page": 3,
+   "file": "p3.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "mob1",
+     "text": "听说白长老昨日一剑斩了妖王！",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      159,
+      96,
+      364,
+      165
+     ],
+     "bubble": [
+      93,
+      59,
+      430,
+      202
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "mob2",
+     "text": "那位的剑，快得连影子都看不见。谁敢惹那位啊。",
+     "refers": {
+      "bai": "f"
+     },
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      524,
+      106,
+      854,
+      175
+     ],
+     "bubble": [
+      432,
+      69,
+      946,
+      212
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "chen",
+     "text": "婉儿，别乱跑，跟紧我。",
+     "addr": "chen>waner",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      142,
+      579,
+      453,
+      609
+     ],
+     "bubble": [
+      54,
+      550,
+      541,
+      638
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "waner",
+     "text": "知道啦，师兄！",
+     "addr": "waner>chen",
+     "rot": 8,
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      662,
+      605,
+      851,
+      684
+     ],
+     "bubble": [
+      599,
+      579,
+      914,
+      710
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "kind": "aside",
+     "text": "好厉害",
+     "vertical": false,
+     "box": [
+      349,
+      1299,
+      411,
+      1321
+     ],
+     "bubble": null,
+     "glyph": 21,
+     "angle": 0,
+     "shape": null,
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "嗖",
+     "vertical": false,
+     "box": [
+      734,
+      335,
+      858,
+      457
+     ],
+     "bubble": null,
+     "glyph": 111,
+     "angle": 8,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  },
+  {
+   "page": 4,
+   "file": "p4.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "waner",
+     "text": "师兄，你知道为什么剑修从不迷路吗？",
+     "addr": "waner>chen",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      133,
+      103,
+      400,
+      172
+     ],
+     "bubble": [
+      54,
+      66,
+      479,
+      209
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "chen",
+     "text": "为什么？",
+     "addr": "chen>waner",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      680,
+      94,
+      784,
+      124
+     ],
+     "bubble": [
+      636,
+      65,
+      829,
+      153
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "waner",
+     "text": "因为他们“见”路就走！剑修嘛，见路就“剑”！",
+     "pun": true,
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      142,
+      597,
+      452,
+      666
+     ],
+     "bubble": [
+      54,
+      560,
+      540,
+      703
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "chen",
+     "text": "……婉儿，去练剑。",
+     "addr": "chen>waner",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      604,
+      587,
+      852,
+      617
+     ],
+     "bubble": [
+      529,
+      558,
+      927,
+      646
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "waner",
+     "kind": "tiny",
+     "text": "哼",
+     "vertical": false,
+     "box": [
+      237,
+      1070,
+      258,
+      1092
+     ],
+     "bubble": [
+      210,
+      1043,
+      285,
+      1120
+     ],
+     "glyph": 22,
+     "shape": "ellipse",
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "砰",
+     "vertical": false,
+     "box": [
+      780,
+      263,
+      903,
+      389
+     ],
+     "bubble": null,
+     "glyph": 112,
+     "angle": -9,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  },
+  {
+   "page": 5,
+   "file": "p5.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "bai",
+     "text": "林婉儿，萧辰，明日随我下山。",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      161,
+      102,
+      351,
+      171
+     ],
+     "bubble": [
+      99,
+      65,
+      414,
+      208
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "chen",
+     "kind": "shout",
+     "text": "弟子遵命！",
+     "addr": "chen>bai",
+     "vertical": false,
+     "box": [
+      663,
+      99,
+      827,
+      136
+     ],
+     "bubble": [
+      606,
+      69,
+      884,
+      167
+     ],
+     "glyph": 38,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "chen",
+     "kind": "thought",
+     "text": "有那位在，此行应当无忧。那位从未失手过。",
+     "refers": {
+      "bai": "f"
+     },
+     "vertical": false,
+     "box": [
+      140,
+      596,
+      440,
+      664
+     ],
+     "bubble": [
+      54,
+      559,
+      526,
+      701
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "mob1",
+     "text": "萧辰那小子运气真好，能跟着白长老下山。",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      584,
+      590,
+      864,
+      659
+     ],
+     "bubble": [
+      503,
+      553,
+      946,
+      696
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "-",
+     "kind": "narration",
+     "text": "翌日，青云宗山门大开。",
+     "vert": true,
+     "vertical": true,
+     "box": [
+      245,
+      1059,
+      308,
+      1226
+     ],
+     "bubble": [
+      223,
+      1041,
+      330,
+      1244
+     ],
+     "glyph": 28,
+     "shape": "rect",
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "咚",
+     "vertical": false,
+     "box": [
+      508,
+      854,
+      626,
+      964
+     ],
+     "bubble": null,
+     "glyph": 108,
+     "angle": 8,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  }
+ ]
+}

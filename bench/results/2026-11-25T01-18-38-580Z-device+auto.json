@@ -1,0 +1,1387 @@
+{
+  "env": {
+    "chrome": "Chrome/158.0.0.0",
+    "nano": "available",
+    "config": {
+      "cloud_enabled": 1,
+      "daily_cloud_requests_per_browser": 800,
+      "cloud_fast_model": "gemini-3.5-flash-lite",
+      "cloud_page_model": "gemini-3.8-flash",
+      "cloud_page_thinking": "LOW",
+      "cloud_bubble_thinking": "MINIMAL",
+      "max_cloud_escalations_per_page": 4,
+      "min_bubbles_for_device_path": 1,
+      "cloud_concurrency": 6,
+      "cloud_first_vertical": 1,
+      "device_languages": "en,es,ja",
+      "device_timeout_ms": 20000
+    },
+    "glossary": false,
+    "date": "2026-11-25T01:07:38.096Z"
+  },
+  "modes": {
+    "device": {
+      "pages": 15,
+      "errors": 0,
+      "found": 79,
+      "read": 74,
+      "names": 48,
+      "leftover": 0,
+      "onDevice": 100,
+      "cloudCallsPerPage": 0,
+      "escalated": 0,
+      "secondsPerPage": 34.7,
+      "firstBubbleSeconds": 25.7,
+      "rows": [
+        {
+          "chapter": "ja_school",
+          "page": "p1.png",
+          "seconds": 25.99210000000894,
+          "first": 14.174,
+          "error": null,
+          "tally": {
+            "device": 7,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              14111,
+              2037,
+              1925,
+              2546,
+              1617,
+              2004,
+              1689
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 2,
+          "read": 0.4555619818777713,
+          "names": 2,
+          "namesTotal": 5,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "互高校。桜ヶ校夕",
+              "translation": "Hokou High. Cherry Blossom Campus Evening.",
+              "source": "device"
+            },
+            {
+              "original": "結城先輩！おはようございます！",
+              "translation": "Senpai Yukino! Good morning!",
+              "source": "device"
+            },
+            {
+              "original": "おはよう、蓮くん。",
+              "translation": "Good morning, Ren.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ja_school",
+          "page": "p2.png",
+          "seconds": 14.23370000000298,
+          "first": 2.0734000000059605,
+          "error": null,
+          "tally": {
+            "device": 7,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              1996,
+              2600,
+              2156,
+              2012,
+              1611,
+              1947,
+              1835
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 2,
+          "read": 0.6819650937297996,
+          "names": 3,
+          "namesTotal": 5,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "どこだ？結城は",
+              "translation": "Where's Yuki?",
+              "source": "device"
+            },
+            {
+              "original": "先輩なら道場にいると思います、黒川先生。",
+              "translation": "I think Senpai is at the dojo, Sensei Kurokawa.",
+              "source": "device"
+            },
+            {
+              "original": "あいつはまた一人で練習しているのか。",
+              "translation": "So he's practicing alone again?",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ja_school",
+          "page": "p3.png",
+          "seconds": 15.55029999999702,
+          "first": 2.1543999999910595,
+          "error": null,
+          "tally": {
+            "device": 5,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2069,
+              2406,
+              2255,
+              2517,
+              2041
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 0.4491079525909247,
+          "names": 0,
+          "namesTotal": 2,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "えがけくん構想",
+              "translation": "Egaake-kun concept!",
+              "source": "device"
+            },
+            {
+              "original": "願望！もう一本お先",
+              "translation": "Wish! One more, please!",
+              "source": "device"
+            },
+            {
+              "original": "集に勝てる人にはいないよ。",
+              "translation": "There's no one who can beat them.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ja_school",
+          "page": "p4.png",
+          "seconds": 28.9445,
+          "first": 2.2345,
+          "error": null,
+          "tally": {
+            "device": 4,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2173,
+              2190,
+              2173,
+              2342
+            ],
+            "cloudMs": [],
+            "path": "device",
+            "timeouts": 1
+          },
+          "gt": 5,
+          "found": 4,
+          "extra": 0,
+          "read": 0.4736842105263158,
+          "names": 2,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "終わらない。心は折れた。",
+              "translation": "It won't end. My heart is broken.",
+              "source": "device"
+            },
+            {
+              "original": "先生、それ、竹ってことですか？",
+              "translation": "Teacher, does that mean bamboo?",
+              "source": "device"
+            },
+            {
+              "original": "座れ。\n…………\n日向。",
+              "translation": "Sit down. ... Hinata.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ja_school",
+          "page": "p5.png",
+          "seconds": 140.101,
+          "first": 140.101,
+          "error": null,
+          "tally": {
+            "device": 0,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [],
+            "cloudMs": [],
+            "path": "device",
+            "timeouts": 7
+          },
+          "gt": 5,
+          "found": 0,
+          "extra": 0,
+          "read": 0,
+          "names": 0,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": []
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p1.png",
+          "seconds": 120.0835,
+          "first": 120.0835,
+          "error": null,
+          "tally": {
+            "device": 0,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [],
+            "cloudMs": [],
+            "path": "device",
+            "timeouts": 6
+          },
+          "gt": 5,
+          "found": 0,
+          "extra": 0,
+          "read": 0,
+          "names": 0,
+          "namesTotal": 6,
+          "leftover": 0,
+          "sample": []
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p2.png",
+          "seconds": 86.6125,
+          "first": 86.6125,
+          "error": null,
+          "tally": {
+            "device": 1,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              6522
+            ],
+            "cloudMs": [],
+            "path": "device",
+            "timeouts": 4
+          },
+          "gt": 5,
+          "found": 1,
+          "extra": 0,
+          "read": 0,
+          "names": 0,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "향",
+              "translation": "Smell!",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p3.png",
+          "seconds": 10.466100000008941,
+          "first": 2.42179999999702,
+          "error": null,
+          "tally": {
+            "device": 4,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2359,
+              2280,
+              2790,
+              2974
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 0,
+          "read": 0.9895833333333334,
+          "names": 0,
+          "namesTotal": 1,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "네, 팀장님! 바로 수정하겠습니다!",
+              "translation": "Yes, Chief! I'll fix it right away!",
+              "source": "device"
+            },
+            {
+              "original": "서윤 씨, 이 보고서 다시 써 오세요.",
+              "translation": "Sylvia, please rewrite this report.",
+              "source": "device"
+            },
+            {
+              "original": "선배는 어떻게 저렇게 우유로울까. 나도 그분처럼 되고 싶다.",
+              "translation": "How can senior be so cool? I want to be like them too.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p4.png",
+          "seconds": 9.988100000008941,
+          "first": 2.3242999999970197,
+          "error": null,
+          "tally": {
+            "device": 4,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2246,
+              2462,
+              2546,
+              2655
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 0,
+          "read": 0.9448717948717948,
+          "names": 1,
+          "namesTotal": 2,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "월요일이라 '월래 그래.",
+              "translation": "It's Monday, so what else is new?",
+              "source": "device"
+            },
+            {
+              "original": "서윤아, 너 오늘 왜 이렇게 피곤해 보여?",
+              "translation": "Seoyuna, why do you look so tired today?",
+              "source": "device"
+            },
+            {
+              "original": "...그 계고, 강태오 팀장한테도 해 봐.",
+              "translation": "...And that goes for Team Lead Kang Tae-oh too.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p5.png",
+          "seconds": 13.978399999991058,
+          "first": 2.1273999999910593,
+          "error": null,
+          "tally": {
+            "device": 5,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2063,
+              2536,
+              2908,
+              2539,
+              2401
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 0.9280952380952382,
+          "names": 3,
+          "namesTotal": 4,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "감사합니다, 팀장님!",
+              "translation": "Thank you, Team Leader!",
+              "source": "device"
+            },
+            {
+              "original": "서윤 씨, 보고서 잘 썼어요. 수정했어요.",
+              "translation": "Seoyeon, your report is great! I edited it.",
+              "source": "device"
+            },
+            {
+              "original": "민지 선배라는 사람, 한번 만나 보고 싶다. 그 사람 진짜 멋있네.",
+              "translation": "I really want to meet Minji, the senior. She's so cool!",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p1.png",
+          "seconds": 9.776399999991058,
+          "first": 2.3533999999910593,
+          "error": null,
+          "tally": {
+            "device": 4,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2308,
+              1995,
+              2847,
+              2581
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 0,
+          "read": 0.7944444444444444,
+          "names": 3,
+          "namesTotal": 5,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "萧辰师兄！你终于回来了！",
+              "translation": "Senior Brother Xiao Chen! You're finally back!",
+              "source": "device"
+            },
+            {
+              "original": "青空祭外刀。",
+              "translation": "Outside the blue sky festival... sword.",
+              "source": "device"
+            },
+            {
+              "original": "有白长老在，谁敢？她是京门最强大的长老。",
+              "translation": "With Elder White here, who dares? She's the strongest elder in the capital!",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p2.png",
+          "seconds": 11.51510000000894,
+          "first": 2.40079999999702,
+          "error": null,
+          "tally": {
+            "device": 5,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2353,
+              2315,
+              2295,
+              2509,
+              1996
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 1,
+          "read": 0.8638888888888889,
+          "names": 3,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "回长老，弟子三日前刚刚突破。",
+              "translation": "Elder, I just recently broke through three days ago!",
+              "source": "device"
+            },
+            {
+              "original": "萧辰，你已突破基期了？",
+              "translation": "Xiao Chen, have you broken through to the Foundation Establishment stage?",
+              "source": "device"
+            },
+            {
+              "original": "样样从从来没有这人果然不一般。",
+              "translation": "They're just... not ordinary, after all.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p3.png",
+          "seconds": 10.00439999999106,
+          "first": 3.0247999999970197,
+          "error": null,
+          "tally": {
+            "device": 4,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2978,
+              2574,
+              2423,
+              1982
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 0,
+          "read": 0.9583333333333334,
+          "names": 3,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "那位的剑，快得连影子都看不见。谁敢惹那位啊。",
+              "translation": "That person's sword is so fast, you can't even see it! Who dares provoke them?",
+              "source": "device"
+            },
+            {
+              "original": "听说白长老昨日 一剑斩了妖王！",
+              "translation": "They say Elder Bai chopped down the Demon King with a single sword yesterday!",
+              "source": "device"
+            },
+            {
+              "original": "婉儿，别乱跑，跟紧我。",
+              "translation": "Wan'er, don't run around, stay close to me.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p4.png",
+          "seconds": 11.20670000000298,
+          "first": 1.7845,
+          "error": null,
+          "tally": {
+            "device": 5,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              1725,
+              2537,
+              2129,
+              3028,
+              1728
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 0.7866666666666667,
+          "names": 2,
+          "namesTotal": 2,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "为什么？",
+              "translation": "Why?",
+              "source": "device"
+            },
+            {
+              "original": "师兄，你知道为什么剑修从不迷路吗？",
+              "translation": "Senior Brother, do you know why swordsmen never get lost?",
+              "source": "device"
+            },
+            {
+              "original": "...婉儿，去练剑。",
+              "translation": "Wan'er, go practice your sword!",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p5.png",
+          "seconds": 12.30420000000298,
+          "first": 2.0344000000059603,
+          "error": null,
+          "tally": {
+            "device": 5,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              1952,
+              2571,
+              2730,
+              2903,
+              2066
+            ],
+            "cloudMs": [],
+            "path": "device"
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 0.7764705882352941,
+          "names": 3,
+          "namesTotal": 5,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "弟子遭命！",
+              "translation": "My disciple is doomed!",
+              "source": "device"
+            },
+            {
+              "original": "林婉儿，萧辰辰，明日随我下山。",
+              "translation": "Lin Wan'er, Xiao Chenchen, follow me down the mountain tomorrow.",
+              "source": "device"
+            },
+            {
+              "original": "萧辰那小子运气真好，能跟着白长生下山。",
+              "translation": "Xiao Chen's lucky! He got to go downstairs with Bai Changsheng.",
+              "source": "device"
+            }
+          ]
+        }
+      ]
+    },
+    "auto": {
+      "pages": 15,
+      "errors": 0,
+      "found": 99,
+      "read": 94,
+      "names": 83,
+      "leftover": 0,
+      "onDevice": 62,
+      "cloudCallsPerPage": 2.6,
+      "escalated": 1,
+      "secondsPerPage": 9.1,
+      "firstBubbleSeconds": 2,
+      "rows": [
+        {
+          "chapter": "ja_school",
+          "page": "p1.png",
+          "seconds": 3.1122000000029804,
+          "first": 2.3155,
+          "error": null,
+          "tally": {
+            "device": 0,
+            "cloud": 5,
+            "escalated": 0,
+            "cloudCalls": 7,
+            "deviceMs": [],
+            "cloudMs": [
+              2250,
+              2562,
+              2718,
+              2897,
+              3046
+            ],
+            "path": "hybrid",
+            "routedHard": 7
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 1,
+          "names": 5,
+          "namesTotal": 5,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "四月。桜ヶ丘高校。",
+              "translation": "April. Sakuragaoka High School.",
+              "source": "cloud"
+            },
+            {
+              "original": "結城先輩！おはようございます！",
+              "translation": "Good morning, Yuuki-senpai!",
+              "source": "cloud"
+            },
+            {
+              "original": "おはよう、蓮くん。\n今日も早いね。",
+              "translation": "Morning, Ren. Up early today too, huh?",
+              "source": "cloud"
+            }
+          ]
+        },
+        {
+          "chapter": "ja_school",
+          "page": "p2.png",
+          "seconds": 2.7857999999970198,
+          "first": 1.3427999999970197,
+          "error": null,
+          "tally": {
+            "device": 0,
+            "cloud": 5,
+            "escalated": 0,
+            "cloudCalls": 7,
+            "deviceMs": [],
+            "cloudMs": [
+              1267,
+              1646,
+              1772,
+              1906,
+              2710
+            ],
+            "path": "hybrid",
+            "routedHard": 7
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 1,
+          "names": 5,
+          "namesTotal": 5,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "蓮、結城はどこだ？",
+              "translation": "Ren, where is Yuki?",
+              "source": "cloud"
+            },
+            {
+              "original": "先輩なら道場にいると思います、黒川先生。",
+              "translation": "I think he's in the dojo, Kurokawa-sensei.",
+              "source": "cloud"
+            },
+            {
+              "original": "あいつはまた一人で練習しているのか。",
+              "translation": "Is he practicing alone again?",
+              "source": "cloud"
+            }
+          ]
+        },
+        {
+          "chapter": "ja_school",
+          "page": "p3.png",
+          "seconds": 2.986199999988079,
+          "first": 1.417699999988079,
+          "error": null,
+          "tally": {
+            "device": 0,
+            "cloud": 5,
+            "escalated": 1,
+            "cloudCalls": 8,
+            "deviceMs": [],
+            "cloudMs": [
+              1339,
+              1589,
+              1775,
+              1779,
+              2054
+            ],
+            "path": "hybrid",
+            "routedHard": 7
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 1,
+          "names": 2,
+          "namesTotal": 2,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "蓮くん、構えが甘い！",
+              "translation": "Ren, your stance is weak!",
+              "source": "cloud"
+            },
+            {
+              "original": "すみません、先輩！もう一本お願 いします！",
+              "translation": "Excuse me, senpai! One more, please!",
+              "source": "cloud"
+            },
+            {
+              "original": "葵に勝てる人なんて、この学校にはいないよ。",
+              "translation": "There is no one in this school who can beat Aoi.",
+              "source": "cloud"
+            }
+          ]
+        },
+        {
+          "chapter": "ja_school",
+          "page": "p4.png",
+          "seconds": 4.860399999991059,
+          "first": 1.7133999999910594,
+          "error": null,
+          "tally": {
+            "device": 1,
+            "cloud": 4,
+            "escalated": 0,
+            "cloudCalls": 4,
+            "deviceMs": [
+              1877
+            ],
+            "cloudMs": [
+              1655,
+              1655,
+              1794,
+              4802
+            ],
+            "path": "hybrid",
+            "routedHard": 4
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 0.95,
+          "names": 3,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "結城の竹刀は折れない。心が折れないからだ。",
+              "translation": "Yuki's bamboo sword doesn't break. Because her spirit doesn't.",
+              "source": "cloud"
+            },
+            {
+              "original": "先生、それ、竹刀だけに「しない」ってことですか？",
+              "translation": "Sensei, is that a pun on 'shinai' (wooden sword) and 'shi-nai' (not do)?",
+              "source": "cloud"
+            },
+            {
+              "original": "……日向、座れ。",
+              "translation": "...Hinata, sit.",
+              "source": "cloud"
+            }
+          ]
+        },
+        {
+          "chapter": "ja_school",
+          "page": "p5.png",
+          "seconds": 17.74639999999106,
+          "first": 1.3265999999940394,
+          "error": null,
+          "tally": {
+            "device": 0,
+            "cloud": 4,
+            "escalated": 0,
+            "cloudCalls": 7,
+            "deviceMs": [],
+            "cloudMs": [
+              1247,
+              1548,
+              1701,
+              17667
+            ],
+            "path": "hybrid",
+            "routedHard": 7
+          },
+          "gt": 5,
+          "found": 4,
+          "extra": 0,
+          "read": 1,
+          "names": 2,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "蓮くん、明日の大会、一緒に頑張ろう。",
+              "translation": "Ren, let's do our best at tomorrow's tournament together.",
+              "source": "cloud"
+            },
+            {
+              "original": "あいつなら大丈夫だ。俺が保証する。",
+              "translation": "He's fine. I vouch for him.",
+              "source": "cloud"
+            },
+            {
+              "original": "あの子、昨日も夜遅くまで残ってたんだって。葵らしいよね。",
+              "translation": "I heard she stayed late last night too. Sounds just like Aoi, right?",
+              "source": "cloud"
+            }
+          ]
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p1.png",
+          "seconds": 12.89829999999702,
+          "first": 3.091,
+          "error": null,
+          "tally": {
+            "device": 5,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 1,
+            "deviceMs": [
+              3013,
+              1990,
+              2475,
+              2612,
+              2731
+            ],
+            "cloudMs": [],
+            "path": "hybrid",
+            "routedHard": 1
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 1,
+          "names": 4,
+          "namesTotal": 6,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "안녕하세요, 강태오 팀장님! 오늘부터 출근하게 된 한서윤입니다.",
+              "translation": "Hi Kang Tae-oh! I'm Han Seoyoon, and I'm starting today.",
+              "source": "device"
+            },
+            {
+              "original": "서울, 월요일 아침.",
+              "translation": "Seoul, Monday morning.",
+              "source": "device"
+            },
+            {
+              "original": "반가워요! 편하게 민지 언니라고 불러요.",
+              "translation": "Nice to meet you! You can call me Minji.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p2.png",
+          "seconds": 12.84340000000596,
+          "first": 2.8865,
+          "error": null,
+          "tally": {
+            "device": 5,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2833,
+              2531,
+              3058,
+              2797,
+              1572
+            ],
+            "cloudMs": [],
+            "path": "hybrid"
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 0.78,
+          "names": 2,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "하준아, 말도 마. 팀장님이 엄청 무서워.",
+              "translation": "Hajun, don't even talk about it. The team leader is super scary.",
+              "source": "device"
+            },
+            {
+              "original": "아, 서윤아! 첫 출근 어땠어?",
+              "translation": "Oh, Seryoon! How was your first day at work?",
+              "source": "device"
+            },
+            {
+              "original": "그 사람 소문 들었어. 일은 잘하는데 엄청 차갑다며?",
+              "translation": "I heard rumors about that person. They're good at their job, but apparently they're really cold.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p3.png",
+          "seconds": 10.75459999999404,
+          "first": 2.3349000000059603,
+          "error": null,
+          "tally": {
+            "device": 4,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2282,
+              2387,
+              2945,
+              3087
+            ],
+            "cloudMs": [],
+            "path": "hybrid"
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 0,
+          "read": 0.9791666666666666,
+          "names": 0,
+          "namesTotal": 1,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "네, 팀장님! 바로 수정하겠습니다!",
+              "translation": "Yes, boss! I'll fix it right away!",
+              "source": "device"
+            },
+            {
+              "original": "서윤 씨, 이 보고서 다시 써 오세요.",
+              "translation": "Shyun-ssi, please rewrite this report.",
+              "source": "device"
+            },
+            {
+              "original": "선배는 어렇게 저렇게 우유로울까. 나도 그분처럼 되고 싶다.",
+              "translation": "I wonder why my senior is so gentle. I wish I could be like them too.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p4.png",
+          "seconds": 9.7655,
+          "first": 2.2627999999970196,
+          "error": null,
+          "tally": {
+            "device": 4,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2204,
+              2457,
+              2397,
+              2649
+            ],
+            "cloudMs": [],
+            "path": "hybrid"
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 0,
+          "read": 0.9615384615384616,
+          "names": 1,
+          "namesTotal": 2,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "월요일이라 '월'래 그래.",
+              "translation": "It's Monday, so what do you expect?",
+              "source": "device"
+            },
+            {
+              "original": "서윤아, 너 오늘 왜 이렇게 피곤해 보여?",
+              "translation": "Seoyuna, why do you look so tired today?",
+              "source": "device"
+            },
+            {
+              "original": "…그 개고, 강태요 팀장한테도 해 봐.",
+              "translation": "...Try that on Jang Tae-yo too.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "ko_office",
+          "page": "p5.png",
+          "seconds": 12.44060000000894,
+          "first": 2.1214000000059605,
+          "error": null,
+          "tally": {
+            "device": 5,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 1,
+            "deviceMs": [
+              2054,
+              2566,
+              2905,
+              2424,
+              2425
+            ],
+            "cloudMs": [],
+            "path": "hybrid",
+            "routedHard": 1
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 0.9273809523809524,
+          "names": 4,
+          "namesTotal": 4,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "감사합니다, 팀장님!",
+              "translation": "Thank you, Team Leader!",
+              "source": "device"
+            },
+            {
+              "original": "서윤 씨, 보고서 잘 맺었어요. 수고했어요.",
+              "translation": "Seoyoon, I finished the report well. Good job.",
+              "source": "device"
+            },
+            {
+              "original": "민지 선배라는 사람, 한번 만나 보고 싶다. 그 사람 진짜 멋있네.",
+              "translation": "I really want to meet Minji, that senior! She's so cool.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p1.png",
+          "seconds": 7.8447999999970195,
+          "first": 1.1346000000089407,
+          "error": null,
+          "tally": {
+            "device": 3,
+            "cloud": 1,
+            "escalated": 0,
+            "cloudCalls": 1,
+            "deviceMs": [
+              2174,
+              2761,
+              2839
+            ],
+            "cloudMs": [
+              1063
+            ],
+            "path": "hybrid",
+            "routedHard": 1
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 0,
+          "read": 0.9427083333333334,
+          "names": 3,
+          "namesTotal": 5,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "萧辰师兄！你终于回来了！",
+              "translation": "Brother Xiao Chen! You're finally back!",
+              "source": "device"
+            },
+            {
+              "original": "青云宗，外门。",
+              "translation": "Qingyun Sect, Outer Gate.",
+              "source": "cloud"
+            },
+            {
+              "original": "有白长老在，谁敢？她是京门最强的长老。",
+              "translation": "Who would dare with Elder Bai around? She's the strongest elder in the capital!",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p2.png",
+          "seconds": 7.2286000000089405,
+          "first": 1.5953000000119208,
+          "error": null,
+          "tally": {
+            "device": 3,
+            "cloud": 1,
+            "escalated": 0,
+            "cloudCalls": 2,
+            "deviceMs": [
+              2320,
+              2390,
+              2464
+            ],
+            "cloudMs": [
+              1541
+            ],
+            "path": "hybrid",
+            "routedHard": 2
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 0,
+          "read": 0.9291666666666667,
+          "names": 3,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "回长者，弟子三日前刚刚突破。",
+              "translation": "Master, I just broke through three days ago!",
+              "source": "device"
+            },
+            {
+              "original": "萧辰，你已突破基期了吗？",
+              "translation": "Xiao Chen, have you broken through the Foundation Establishment stage?",
+              "source": "device"
+            },
+            {
+              "original": "长老从来没有这样夸过人……此人果然不一般。",
+              "translation": "The elder has never praised anyone like this before... This person is truly extraordinary.",
+              "source": "cloud"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p3.png",
+          "seconds": 9.9115,
+          "first": 2.8900999999940393,
+          "error": null,
+          "tally": {
+            "device": 4,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              2836,
+              2544,
+              2494,
+              1983
+            ],
+            "cloudMs": [],
+            "path": "hybrid"
+          },
+          "gt": 4,
+          "found": 4,
+          "extra": 0,
+          "read": 0.9391025641025642,
+          "names": 3,
+          "namesTotal": 3,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "那位的剑，快得连影子都看不见。谁敢惹那位啊。",
+              "translation": "That swordsman is so fast he's a blur! Who dares provoke him?",
+              "source": "device"
+            },
+            {
+              "original": "听说白长老昨天 一剑斩了妖王！",
+              "translation": "I heard White Elder sliced the Demon King with a single sword yesterday!",
+              "source": "device"
+            },
+            {
+              "original": "婉儿，别乱跑，跟紧我。",
+              "translation": "Wan'er, don't run off! Stay close to me.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p4.png",
+          "seconds": 11.445,
+          "first": 1.7836999999880792,
+          "error": null,
+          "tally": {
+            "device": 5,
+            "cloud": 0,
+            "escalated": 0,
+            "cloudCalls": 0,
+            "deviceMs": [
+              1724,
+              2423,
+              2172,
+              3445,
+              1621
+            ],
+            "cloudMs": [],
+            "path": "hybrid"
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 0.8,
+          "names": 2,
+          "namesTotal": 2,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "为什么？",
+              "translation": "Why?",
+              "source": "device"
+            },
+            {
+              "original": "师兄，你知道为什么剑修从不迷路吗？",
+              "translation": "Senior Brother, do you know why sword cultivators never get lost?",
+              "source": "device"
+            },
+            {
+              "original": "...婉儿，去练剑。",
+              "translation": "Wan'er, go practice your swordsmanship.",
+              "source": "device"
+            }
+          ]
+        },
+        {
+          "chapter": "zh_sect",
+          "page": "p5.png",
+          "seconds": 10.41279999999702,
+          "first": 1.5322000000029803,
+          "error": null,
+          "tally": {
+            "device": 4,
+            "cloud": 1,
+            "escalated": 0,
+            "cloudCalls": 1,
+            "deviceMs": [
+              1948,
+              2647,
+              2789,
+              2953
+            ],
+            "cloudMs": [
+              1455
+            ],
+            "path": "hybrid",
+            "routedHard": 1
+          },
+          "gt": 5,
+          "found": 5,
+          "extra": 0,
+          "read": 0.8993464052287582,
+          "names": 4,
+          "namesTotal": 5,
+          "leftover": 0,
+          "sample": [
+            {
+              "original": "弟子遭命！",
+              "translation": "My disciple is doomed!",
+              "source": "device"
+            },
+            {
+              "original": "林婉儿，萧辰辰，明日随我下山。",
+              "translation": "Lin Wan'er, Xiao Chenchen, follow me down the mountain tomorrow.",
+              "source": "device"
+            },
+            {
+              "original": "萧辰那小子运气真好，能跟着白长生下山。",
+              "translation": "Xiao Chen's so lucky, he got to descend the mountain with Bai Changsheng!",
+              "source": "device"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mangit Lens: open a chapter</title>
+    <link rel="icon" href="icons/icon32.png" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="overlay.css" />
+  </head>
+  <body>
+    <header class="site-head">
+      <div class="wrap head-row">
+        <span class="brand"><img src="icons/icon48.png" alt="" width="28" height="28" /><span>Mangit Lens</span></span>
+        <p class="head-note">Files you open stay on this computer.</p>
+      </div>
+    </header>
+    <main>
+      <section class="wrap intro">
+        <h1>Open a chapter</h1>
+        <p class="dek">Pick a PDF, CBZ, CBR or EPUB file, or a single page. Translate a page or the whole chapter, then download it translated.</p>
+      </section>
+      <section class="wrap tool" aria-label="Try Mangit Lens">
+        <div class="stage-col">
+          <div class="pickers">
+            <div class="seg" role="group" aria-label="Demo chapter">
+              <button type="button" data-chapter="ja_school" aria-pressed="true">日本語</button>
+              <button type="button" data-chapter="ko_office" aria-pressed="false">한국어</button>
+              <button type="button" data-chapter="zh_sect" aria-pressed="false">中文</button>
+            </div>
+            <label class="upload">
+              <input id="file" type="file" />
+              <span>Open a page or chapter <small>Image, PDF, CBZ, CBR, EPUB</small></span>
+            </label>
+          </div>
+          <div class="pager" aria-label="Pages">
+            <button id="prev" type="button" aria-label="Previous page">‹</button>
+            <p id="pos" aria-live="polite">Page 1 of 5</p>
+            <button id="next" type="button" aria-label="Next page">›</button>
+          </div>
+          <div id="stage" class="stage" tabindex="-1">
+            <img id="page" alt="Manga page to translate" width="1000" height="1500" />
+            <div id="layer" class="mangit-lens-layer"></div>
+            <p id="drop-hint" class="drop-hint" hidden>Drop the page here</p>
+          </div>
+          <p class="fine">Demo chapters are our own drawings. Files you open are read in your browser and never uploaded; in On-device mode no page leaves your computer at all.</p>
+        </div>
+
+        <aside class="panel" aria-label="Controls">
+          <p id="device" class="device" data-state="checking">Checking for Gemini Nano…</p>
+
+          <fieldset class="routes">
+            <legend>Where the AI runs</legend>
+            <label><input type="radio" name="route" value="auto" checked /><span><b>Hybrid</b>Nano first, cloud for hard bubbles</span></label>
+            <label><input type="radio" name="route" value="device" /><span><b>On-device</b>Nothing leaves this computer</span></label>
+            <label><input type="radio" name="route" value="cloud" /><span><b>Cloud</b>Every bubble at once, fastest</span></label>
+          </fieldset>
+
+          <label class="field">
+            <span>Translate to</span>
+            <select id="target"></select>
+          </label>
+
+          <button id="go" class="go" type="button">Translate page</button>
+          <button id="all" class="quiet" type="button">Translate whole chapter</button>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+
+          <dl class="stats">
+            <div><dt>On your computer</dt><dd id="s-device">–</dd></div>
+            <div><dt>Cloud</dt><dd id="s-cloud">–</dd></div>
+            <div><dt>First bubble</dt><dd id="s-first">–</dd></div>
+            <div><dt>Whole page</dt><dd id="s-total">–</dd></div>
+          </dl>
+          <p id="privacy" class="privacy"></p>
+          <p class="legend"><i class="dot device"></i> read on your computer <i class="dot cloud"></i> read in the cloud. Hover a bubble to see the original.</p>
+          <button id="toggle" class="quiet" type="button" disabled>Show original</button>
+          <div id="downloads" class="downloads">
+            <p>Download translated</p>
+            <div><button id="dl-png" class="quiet" type="button" disabled>This page (PNG)</button></div>
+            <div><button id="dl-cbz" class="quiet" type="button" disabled>Chapter (CBZ)</button><button id="dl-pdf" class="quiet" type="button" disabled>Chapter (PDF)</button></div>
+            <p id="dl-note" class="dl-note">Translate a page first.</p>
+          </div>
+        </aside>
+      </section>
+
+    </main>
+    <script type="module" src="library.js"></script>
+  </body>
+</html>

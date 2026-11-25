@@ -1,0 +1,31 @@
+<template>
+  <style>
+    @font-face { font-family: "Sora"; src: url("assets/fonts/sora-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; background: #0b0c0f; overflow: hidden; }
+    #ec-lockup { position: absolute; left: 0; right: 0; top: 300px; display: flex; justify-content: center; align-items: center; gap: 36px; }
+    #ec-logo { width: 160px; height: 160px; border-radius: 34px; }
+    #ec-word { font: 700 110px "Sora", sans-serif; letter-spacing: -0.02em; color: #eef0f3; }
+    #ec-url { position: absolute; left: 0; right: 0; top: 540px; text-align: center; font: 700 56px "Inter", sans-serif; color: #3fe0ff; }
+    #ec-meta { position: absolute; left: 0; right: 0; top: 640px; text-align: center; font: 400 36px "Inter", sans-serif; color: #c9ced6; }
+    #ec-built { position: absolute; left: 0; right: 0; bottom: 120px; text-align: center; font: 400 28px "Inter", sans-serif; color: #a0a6b1; }
+  </style>
+  <div id="root" data-composition-id="endcard" data-width="1920" data-height="1080">
+    <div id="ec-lockup" class="clip" data-hold data-start="0.2" data-duration="9.8" data-track-index="0">
+      <img id="ec-logo" src="assets/logo.png" alt="Mangit Lens" />
+      <span id="ec-word">Mangit Lens</span>
+    </div>
+    <p id="ec-url" class="clip" data-hold data-start="1.2" data-duration="8.8" data-track-index="1">mangit-lens.web.app</p>
+    <p id="ec-meta" class="clip" data-start="1.8" data-duration="8.2" data-track-index="2">Free and open source · github.com/mirzemehdi/mangit-lens</p>
+    <p id="ec-built" class="clip" data-start="2.6" data-duration="7.4" data-track-index="3">Built with Firebase AI Logic hybrid inference · by the team behind Mangit</p>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#ec-lockup", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.2);
+    tl.fromTo("#ec-logo", { scale: 0.6, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.7, ease: "back.out(1.6)" }, 0.2);
+    tl.fromTo("#ec-word", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.6, ease: "expo.out" }, 0.55);
+    tl.fromTo("#ec-url", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.2);
+    tl.fromTo("#ec-meta", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.8);
+    tl.fromTo("#ec-built", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 2.6);
+    window.__timelines["endcard"] = tl;
+  </script>
+</template>

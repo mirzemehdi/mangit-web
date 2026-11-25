@@ -1,0 +1,32 @@
+<template>
+  <style>
+    @font-face { font-family: "Sora"; src: url("assets/fonts/sora-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+    #root { position: absolute; inset: 0; background: #0b0c0f; overflow: hidden; }
+    #pr-frame { position: absolute; left: 820px; top: 0; width: 1100px; height: 1080px; overflow: hidden; }
+    #pr-page { position: absolute; left: 0; top: 12px; width: 1100px; height: 1650px; }
+    #pr-text { position: absolute; left: 120px; top: 260px; width: 620px; }
+    .pr-line { font: 700 60px/1.15 "Sora", sans-serif; letter-spacing: -0.01em; color: #eef0f3; }
+    .pr-line + .pr-line { margin-top: 48px; }
+    .pr-line span { color: #ffc15e; }
+    #pr-q { margin-top: 56px; font: 400 36px/1.4 "Inter", sans-serif; color: #a0a6b1; }
+  </style>
+  <div id="root" data-composition-id="problem" data-width="1920" data-height="1080">
+    <div id="pr-frame">
+      <img id="pr-page" class="clip" src="assets/pages/ja-p1.png" alt="Untranslated Japanese demo page" data-start="0" data-duration="9" data-track-index="0" />
+    </div>
+    <div id="pr-text">
+      <p id="pr-1" class="pr-line clip" data-start="0.3" data-duration="8.7" data-track-index="1">Most manga never gets translated into your language.</p>
+      <p id="pr-2" class="pr-line clip" data-start="2.6" data-duration="6.4" data-track-index="2">So readers wait, or <span>upload every page they read</span> to someone's server.</p>
+      <p id="pr-q" class="clip" data-start="5.6" data-duration="3.4" data-track-index="3">What if the page never had to leave your computer?</p>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#pr-1", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "expo.out" }, 0.3);
+    tl.fromTo("#pr-2", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "expo.out" }, 2.6);
+    tl.fromTo("#pr-q", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, 5.6);
+    tl.fromTo("#pr-frame", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0);
+    tl.fromTo("#pr-frame", { scale: 1 }, { scale: 1.05, duration: 8.8, ease: "none", transformOrigin: "30% 20%" }, 0);
+    window.__timelines["problem"] = tl;
+  </script>
+</template>

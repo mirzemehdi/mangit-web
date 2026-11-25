@@ -1,0 +1,759 @@
+{
+ "chapter": "ja_school",
+ "src": "ja",
+ "vertical": true,
+ "cast": {
+  "aoi": "f",
+  "ren": "m",
+  "kurokawa": "m",
+  "hinata": "f"
+ },
+ "names": {
+  "結城": {
+   "char": "aoi",
+   "re": "y[uūû]u?h?ki"
+  },
+  "葵": {
+   "char": "aoi",
+   "re": "aoi"
+  },
+  "蓮": {
+   "char": "ren",
+   "re": "\\bren\\b"
+  },
+  "黒川": {
+   "char": "kurokawa",
+   "re": "kurokawa"
+  },
+  "日向": {
+   "char": "hinata",
+   "re": "hinata|hy[uūû]u?ga|himuka|hinat"
+  }
+ },
+ "pages": [
+  {
+   "page": 1,
+   "file": "p1.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "-",
+     "kind": "narration",
+     "text": "四月。桜ヶ丘高校。",
+     "vertical": true,
+     "box": [
+      698,
+      77,
+      762,
+      212
+     ],
+     "bubble": [
+      676,
+      59,
+      784,
+      230
+     ],
+     "glyph": 28,
+     "shape": "rect",
+     "gid": 1
+    },
+    {
+     "who": "ren",
+     "text": "結城先輩！おはようございます！",
+     "addr": "ren>aoi",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      240,
+      142,
+      308,
+      379
+     ],
+     "bubble": [
+      203,
+      70,
+      345,
+      452
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "aoi",
+     "text": "おはよう、蓮くん。今日も早いね。",
+     "addr": "aoi>ren",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      701,
+      634,
+      771,
+      885
+     ],
+     "bubble": [
+      664,
+      559,
+      809,
+      961
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "ren",
+     "kind": "thought",
+     "text": "結城葵先輩。剣道部の主将で、僕の憧れの人だ。",
+     "vertical": true,
+     "box": [
+      203,
+      631,
+      313,
+      870
+     ],
+     "bubble": [
+      157,
+      558,
+      359,
+      943
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "hinata",
+     "text": "葵は私の姉みたいな人なの。",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      715,
+      1111,
+      785,
+      1319
+     ],
+     "bubble": [
+      678,
+      1045,
+      823,
+      1386
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "ドキドキ",
+     "vertical": false,
+     "box": [
+      83,
+      1293,
+      497,
+      1451
+     ],
+     "bubble": null,
+     "glyph": 109,
+     "angle": 8,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  },
+  {
+   "page": 2,
+   "file": "p2.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "kurokawa",
+     "text": "蓮、結城はどこだ？",
+     "addr": "kurokawa>ren",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      699,
+      113,
+      768,
+      261
+     ],
+     "bubble": [
+      662,
+      59,
+      805,
+      315
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "ren",
+     "text": "先輩なら道場にいると思います、黒川先生。",
+     "addr": "ren>kurokawa",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      200,
+      133,
+      309,
+      353
+     ],
+     "bubble": [
+      155,
+      64,
+      355,
+      422
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "kurokawa",
+     "text": "あいつはまた一人で練習しているのか。",
+     "refers": {
+      "aoi": "f"
+     },
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      691,
+      634,
+      761,
+      902
+     ],
+     "bubble": [
+      654,
+      555,
+      799,
+      981
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "ren",
+     "text": "あの人は誰よりも努力していますから。",
+     "refers": {
+      "aoi": "f"
+     },
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      244,
+      638,
+      313,
+      908
+     ],
+     "bubble": [
+      207,
+      559,
+      350,
+      988
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "hinata",
+     "text": "日向って呼んでいいよ、蓮くん。",
+     "addr": "hinata>ren",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      723,
+      1121,
+      791,
+      1356
+     ],
+     "bubble": [
+      686,
+      1049,
+      828,
+      1428
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "ガラッ",
+     "vertical": false,
+     "box": [
+      409,
+      327,
+      713,
+      466
+     ],
+     "bubble": null,
+     "glyph": 106,
+     "angle": 13,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  },
+  {
+   "page": 3,
+   "file": "p3.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "aoi",
+     "kind": "shout",
+     "text": "蓮くん、構えが甘い！",
+     "addr": "aoi>ren",
+     "vertical": true,
+     "box": [
+      685,
+      129,
+      773,
+      316
+     ],
+     "bubble": [
+      644,
+      67,
+      814,
+      378
+     ],
+     "glyph": 38,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "ren",
+     "text": "すみません、先輩！もう一本お願いします！",
+     "addr": "ren>aoi",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      207,
+      126,
+      316,
+      335
+     ],
+     "bubble": [
+      162,
+      60,
+      362,
+      402
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "hinata",
+     "text": "葵に勝てる人なんて、この学校にはいないよ。",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      679,
+      615,
+      787,
+      825
+     ],
+     "bubble": [
+      634,
+      548,
+      833,
+      892
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "ren",
+     "kind": "thought",
+     "text": "先輩は強い。でも、いつかあの人に追いつく。",
+     "refers": {
+      "aoi": "f"
+     },
+     "vertical": true,
+     "box": [
+      214,
+      627,
+      323,
+      835
+     ],
+     "bubble": [
+      169,
+      561,
+      369,
+      902
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "aoi",
+     "text": "あの子は伸びますよ、先生。",
+     "refers": {
+      "ren": "m"
+     },
+     "addr": "aoi>kurokawa",
+     "rot": 10,
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      680,
+      1139,
+      774,
+      1353
+     ],
+     "bubble": [
+      648,
+      1068,
+      806,
+      1424
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 5
+    },
+    {
+     "kind": "aside",
+     "text": "がんばれ〜",
+     "vert": false,
+     "vertical": false,
+     "box": [
+      45,
+      890,
+      149,
+      911
+     ],
+     "bubble": null,
+     "glyph": 21,
+     "angle": 0,
+     "shape": null,
+     "gid": 6
+    },
+    {
+     "kind": "sfx",
+     "text": "バシッ",
+     "vertical": false,
+     "box": [
+      150,
+      1266,
+      464,
+      1409
+     ],
+     "bubble": null,
+     "glyph": 112,
+     "angle": 13,
+     "shape": null,
+     "gid": 7
+    },
+    {
+     "kind": "sfx",
+     "text": "ドン",
+     "vertical": false,
+     "box": [
+      390,
+      304,
+      611,
+      432
+     ],
+     "bubble": null,
+     "glyph": 119,
+     "angle": -9,
+     "shape": null,
+     "gid": 8
+    }
+   ]
+  },
+  {
+   "page": 4,
+   "file": "p4.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "kurokawa",
+     "text": "結城の竹刀は折れない。心が折れないからだ。",
+     "refers": {
+      "aoi": "f"
+     },
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      698,
+      135,
+      807,
+      343
+     ],
+     "bubble": [
+      653,
+      69,
+      853,
+      410
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "hinata",
+     "text": "先生、それ、竹刀だけに「しない」ってことですか？",
+     "pun": true,
+     "addr": "hinata>kurokawa",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      210,
+      139,
+      319,
+      378
+     ],
+     "bubble": [
+      165,
+      66,
+      365,
+      451
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "kurokawa",
+     "text": "……日向、座れ。",
+     "addr": "kurokawa>hinata",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      715,
+      611,
+      784,
+      740
+     ],
+     "bubble": [
+      678,
+      561,
+      821,
+      790
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "ren",
+     "text": "日向さん、今のは寒いですよ。",
+     "addr": "ren>hinata",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      239,
+      623,
+      307,
+      829
+     ],
+     "bubble": [
+      202,
+      557,
+      344,
+      895
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "hinata",
+     "kind": "tiny",
+     "text": "えへへ",
+     "vertical": false,
+     "box": [
+      717,
+      1077,
+      779,
+      1097
+     ],
+     "bubble": [
+      681,
+      1050,
+      815,
+      1124
+     ],
+     "glyph": 22,
+     "shape": "ellipse",
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "シーン",
+     "vertical": false,
+     "box": [
+      565,
+      1277,
+      871,
+      1424
+     ],
+     "bubble": null,
+     "glyph": 105,
+     "angle": -14,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  },
+  {
+   "page": 5,
+   "file": "p5.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "aoi",
+     "text": "蓮くん、明日の大会、一緒に頑張ろう。",
+     "addr": "aoi>ren",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      715,
+      146,
+      785,
+      426
+     ],
+     "bubble": [
+      678,
+      65,
+      823,
+      508
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "ren",
+     "text": "はい！結城先輩のために、全力で戦います！",
+     "addr": "ren>aoi",
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      199,
+      125,
+      308,
+      332
+     ],
+     "bubble": [
+      154,
+      59,
+      354,
+      398
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "hinata",
+     "text": "あの子、昨日も夜遅くまで残ってたんだって。葵らしいよね。",
+     "refers": {
+      "aoi": "f"
+     },
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      677,
+      628,
+      827,
+      836
+     ],
+     "bubble": [
+      623,
+      562,
+      882,
+      903
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "kurokawa",
+     "text": "あいつなら大丈夫だ。俺が保証する。",
+     "refers": {
+      "aoi": "f"
+     },
+     "kind": "speech",
+     "vertical": true,
+     "box": [
+      242,
+      636,
+      313,
+      917
+     ],
+     "bubble": [
+      205,
+      554,
+      351,
+      999
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "-",
+     "kind": "narration",
+     "text": "そして、大会の朝が来た。",
+     "vertical": true,
+     "box": [
+      715,
+      1058,
+      780,
+      1223
+     ],
+     "bubble": [
+      693,
+      1040,
+      802,
+      1241
+     ],
+     "glyph": 28,
+     "shape": "rect",
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "ゴゴゴ",
+     "vertical": false,
+     "box": [
+      53,
+      328,
+      372,
+      479
+     ],
+     "bubble": null,
+     "glyph": 109,
+     "angle": 8,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  }
+ ]
+}

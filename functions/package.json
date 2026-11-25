@@ -1,0 +1,12 @@
+{
+  "name": "mangit-lens-functions",
+  "private": true,
+  "description": "Spending shut-off for Mangit Lens cloud translation",
+  "main": "index.js",
+  "engines": { "node": "22" },
+  "dependencies": {
+    "firebase-admin": "^14.5.1",
+    "firebase-functions": "^7.4.0",
+    "google-auth-library": "^11.3.4"
+  }
+}

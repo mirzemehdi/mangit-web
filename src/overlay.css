@@ -1,0 +1,96 @@
+.mangit-lens-layer {
+  position: absolute;
+  z-index: 2147483000;
+  pointer-events: none;
+}
+
+.mangit-lens-layer.mangit-lens-hidden {
+  display: none;
+}
+
+.mangit-lens-bubble {
+  position: absolute;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Padding is set per bubble from its own size (overlay.js): CSS % padding
+     would be relative to the page width and crush short bubbles. */
+  padding: 0;
+  background: #fff;
+  border-radius: 42%;
+  color: #111;
+  text-align: center;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.mangit-lens-bubble span {
+  display: block;
+  max-width: 100%;
+  font-family: "MangitLensLetter", "Comic Neue", "Comic Sans MS", "Chalkboard SE", system-ui, sans-serif;
+  font-weight: 700;
+  line-height: 1.12;
+  /* Break only between words; the font shrinks until the longest word fits. */
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+/* A thin tell on hover only, so the page reads clean but the path is visible. */
+.mangit-lens-bubble:hover {
+  outline: 2px solid #007f99;
+}
+
+.mangit-lens-bubble.mangit-lens-cloud:hover {
+  outline-color: #a86400;
+}
+
+/* Which model translated the bubble: cyan = on your computer, violet = cloud. */
+.mangit-lens-mark {
+  position: absolute;
+  top: 6%;
+  right: 8%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #007f99;
+  box-shadow: 0 0 0 1.5px #fff;
+}
+.mangit-lens-cloud .mangit-lens-mark { background: #a86400; }
+
+.mangit-lens-card {
+  position: absolute;
+  z-index: 2147483001;
+  width: 320px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #0b0f14;
+  color: #e8edf3;
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.35);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 160ms ease-out, transform 160ms ease-out;
+}
+.mangit-lens-card-on { opacity: 1; transform: none; }
+.mangit-lens-card p { margin: 0; }
+.mangit-lens-original { font-size: 17px; line-height: 1.5; color: #fff; }
+.mangit-lens-translation { margin-top: 6px !important; color: #c8d1dc; }
+.mangit-lens-path {
+  margin-top: 10px !important;
+  padding-top: 8px;
+  border-top: 1px solid #222b37;
+  font-size: 12px;
+  color: #3fe0ff;
+}
+.mangit-lens-card[data-source="cloud"] .mangit-lens-path { color: #ffc15e; }
+@media (prefers-reduced-motion: reduce) {
+  .mangit-lens-card { transition: none; }
+}
+
+/* Tall, narrow bubbles (vertical Japanese): use the full width. */
+.mangit-lens-bubble.mangit-lens-narrow { border-radius: 48% / 30%; }
+.mangit-lens-bubble.mangit-lens-rect { border-radius: 3px; }
+.mangit-lens-bubble.mangit-lens-grown { box-shadow: 0 0 0 1.5px #111; }

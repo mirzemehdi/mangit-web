@@ -1,0 +1,694 @@
+{
+ "chapter": "ko_office",
+ "src": "ko",
+ "vertical": false,
+ "cast": {
+  "seoyun": "f",
+  "taeo": "m",
+  "minji": "f",
+  "hajun": "m"
+ },
+ "names": {
+  "서윤": {
+   "char": "seoyun",
+   "re": "seo[- ]?y(u|oo|eo)n"
+  },
+  "태오": {
+   "char": "taeo",
+   "re": "tae[- ]?o\\b"
+  },
+  "민지": {
+   "char": "minji",
+   "re": "min[- ]?ji"
+  },
+  "하준": {
+   "char": "hajun",
+   "re": "ha[- ]?j(u|oo)n"
+  }
+ },
+ "pages": [
+  {
+   "page": 1,
+   "file": "p1.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "-",
+     "kind": "narration",
+     "text": "서울, 월요일 아침.",
+     "vertical": false,
+     "box": [
+      157,
+      83,
+      367,
+      113
+     ],
+     "bubble": [
+      135,
+      65,
+      389,
+      131
+     ],
+     "glyph": 28,
+     "shape": "rect",
+     "gid": 1
+    },
+    {
+     "who": "seoyun",
+     "text": "안녕하세요, 강태오 팀장님! 오늘부터 출근하게 된 한서윤입니다.",
+     "addr": "seoyun>taeo",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      637,
+      109,
+      872,
+      255
+     ],
+     "bubble": [
+      565,
+      56,
+      944,
+      309
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "taeo",
+     "text": "아, 서윤 씨. 자리는 민지 씨 옆이에요.",
+     "addr": "taeo>seoyun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      164,
+      596,
+      344,
+      702
+     ],
+     "bubble": [
+      104,
+      551,
+      405,
+      747
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "minji",
+     "text": "반가워요! 편하게 민지 언니라고 불러요.",
+     "addr": "minji>seoyun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      649,
+      597,
+      856,
+      704
+     ],
+     "bubble": [
+      583,
+      552,
+      922,
+      749
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "minji",
+     "text": "태오 오빠… 아니, 팀장님은 좀 무뚝뚝해요.",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      136,
+      1090,
+      353,
+      1197
+     ],
+     "bubble": [
+      68,
+      1045,
+      422,
+      1242
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "두근",
+     "vertical": false,
+     "box": [
+      535,
+      836,
+      742,
+      967
+     ],
+     "bubble": null,
+     "glyph": 111,
+     "angle": 8,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  },
+  {
+   "page": 2,
+   "file": "p2.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "hajun",
+     "text": "야, 서윤아! 첫 출근 어땠어?",
+     "addr": "hajun>seoyun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      172,
+      97,
+      340,
+      165
+     ],
+     "bubble": [
+      114,
+      60,
+      398,
+      202
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "seoyun",
+     "text": "하준아, 말도 마. 팀장님이 엄청 무서워.",
+     "addr": "seoyun>hajun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      629,
+      113,
+      825,
+      220
+     ],
+     "bubble": [
+      565,
+      68,
+      889,
+      265
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "hajun",
+     "text": "그 사람 소문 들었어. 일은 잘하는데 엄청 차갑다며?",
+     "refers": {
+      "taeo": "m"
+     },
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      187,
+      602,
+      357,
+      747
+     ],
+     "bubble": [
+      129,
+      549,
+      416,
+      800
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "seoyun",
+     "text": "근데 민지 선배는 진짜 좋아. 그분 덕분에 살았어.",
+     "refers": {
+      "minji": "f"
+     },
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      627,
+      607,
+      834,
+      714
+     ],
+     "bubble": [
+      561,
+      562,
+      900,
+      759
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "hajun",
+     "kind": "tiny",
+     "text": "헐",
+     "vertical": false,
+     "box": [
+      265,
+      1080,
+      284,
+      1101
+     ],
+     "bubble": [
+      239,
+      1053,
+      311,
+      1128
+     ],
+     "glyph": 22,
+     "shape": "ellipse",
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "쾅",
+     "vertical": false,
+     "box": [
+      78,
+      1284,
+      180,
+      1399
+     ],
+     "bubble": null,
+     "glyph": 105,
+     "angle": 8,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  },
+  {
+   "page": 3,
+   "file": "p3.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "taeo",
+     "text": "서윤 씨, 이 보고서 다시 써 오세요.",
+     "addr": "taeo>seoyun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      150,
+      93,
+      372,
+      160
+     ],
+     "bubble": [
+      81,
+      56,
+      442,
+      197
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "seoyun",
+     "kind": "shout",
+     "text": "네, 팀장님! 바로 수정하겠습니다!",
+     "addr": "seoyun>taeo",
+     "vertical": false,
+     "box": [
+      599,
+      98,
+      854,
+      184
+     ],
+     "bubble": [
+      523,
+      57,
+      931,
+      225
+     ],
+     "glyph": 38,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "minji",
+     "text": "너무 걱정 마요. 저 사람, 말은 저래도 속은 따뜻해요.",
+     "refers": {
+      "taeo": "m"
+     },
+     "addr": "minji>seoyun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      151,
+      600,
+      371,
+      706
+     ],
+     "bubble": [
+      82,
+      555,
+      440,
+      751
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "seoyun",
+     "kind": "thought",
+     "text": "선배는 어떻게 저렇게 여유로울까. 나도 그분처럼 되고 싶다.",
+     "refers": {
+      "minji": "f"
+     },
+     "vertical": false,
+     "box": [
+      606,
+      606,
+      868,
+      713
+     ],
+     "bubble": [
+      528,
+      561,
+      946,
+      758
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "kind": "aside",
+     "text": "힘내요~",
+     "vertical": false,
+     "box": [
+      267,
+      426,
+      336,
+      446
+     ],
+     "bubble": null,
+     "glyph": 21,
+     "angle": 0,
+     "shape": null,
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "휘익",
+     "vertical": false,
+     "box": [
+      579,
+      797,
+      790,
+      940
+     ],
+     "bubble": null,
+     "glyph": 112,
+     "angle": -9,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  },
+  {
+   "page": 4,
+   "file": "p4.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "hajun",
+     "text": "서윤아, 너 오늘 왜 이렇게 피곤해 보여?",
+     "addr": "hajun>seoyun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      129,
+      106,
+      379,
+      174
+     ],
+     "bubble": [
+      54,
+      69,
+      455,
+      211
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "seoyun",
+     "text": "월요일이라 '월'래 그래.",
+     "pun": true,
+     "addr": "seoyun>hajun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      618,
+      106,
+      833,
+      174
+     ],
+     "bubble": [
+      550,
+      69,
+      901,
+      211
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "hajun",
+     "text": "…그 개그, 강태오 팀장한테도 해 봐.",
+     "addr": "hajun>seoyun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      134,
+      593,
+      351,
+      661
+     ],
+     "bubble": [
+      66,
+      556,
+      420,
+      698
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "seoyun",
+     "text": "미쳤어? 그 사람 앞에서는 숨도 못 쉬어.",
+     "refers": {
+      "taeo": "m"
+     },
+     "rot": -9,
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      627,
+      618,
+      832,
+      748
+     ],
+     "bubble": [
+      559,
+      575,
+      900,
+      791
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "kind": "sfx",
+     "text": "쿵",
+     "vertical": false,
+     "box": [
+      100,
+      841,
+      210,
+      963
+     ],
+     "bubble": null,
+     "glyph": 114,
+     "angle": -9,
+     "shape": null,
+     "gid": 5
+    }
+   ]
+  },
+  {
+   "page": 5,
+   "file": "p5.png",
+   "size": [
+    1000,
+    1500
+   ],
+   "lines": [
+    {
+     "who": "taeo",
+     "text": "서윤 씨, 보고서 잘 봤어요. 수고했어요.",
+     "addr": "taeo>seoyun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      128,
+      104,
+      371,
+      172
+     ],
+     "bubble": [
+      54,
+      67,
+      445,
+      209
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 1
+    },
+    {
+     "who": "seoyun",
+     "text": "감사합니다, 팀장님!",
+     "addr": "seoyun>taeo",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      612,
+      86,
+      856,
+      119
+     ],
+     "bubble": [
+      538,
+      57,
+      930,
+      149
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 2
+    },
+    {
+     "who": "minji",
+     "text": "거봐요, 서윤 씨는 잘할 거라고 했죠?",
+     "addr": "minji>seoyun",
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      164,
+      585,
+      387,
+      653
+     ],
+     "bubble": [
+      95,
+      548,
+      457,
+      690
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 3
+    },
+    {
+     "who": "hajun",
+     "text": "민지 선배라는 사람, 한번 만나 보고 싶다. 그 사람 진짜 멋있네.",
+     "refers": {
+      "minji": "f"
+     },
+     "kind": "speech",
+     "vertical": false,
+     "box": [
+      626,
+      606,
+      870,
+      752
+     ],
+     "bubble": [
+      552,
+      553,
+      944,
+      806
+     ],
+     "glyph": 30,
+     "shape": "ellipse",
+     "gid": 4
+    },
+    {
+     "who": "-",
+     "kind": "narration",
+     "text": "그렇게 서윤의 첫 주가 끝났다.",
+     "vertical": false,
+     "box": [
+      168,
+      1068,
+      361,
+      1131
+     ],
+     "bubble": [
+      146,
+      1050,
+      383,
+      1149
+     ],
+     "glyph": 28,
+     "shape": "rect",
+     "gid": 5
+    },
+    {
+     "kind": "sfx",
+     "text": "짝짝",
+     "vertical": false,
+     "box": [
+      614,
+      1323,
+      804,
+      1447
+     ],
+     "bubble": null,
+     "glyph": 97,
+     "angle": 13,
+     "shape": null,
+     "gid": 6
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+rules_version = '2';
+
+// Shared glossaries: glossaries/{series}/names/{name}, one small document per
+// character name so each write is easy to validate. Readable by anyone using
+// the extension (anonymous sign-in), writable with strict shape and size
+// limits. Nothing can be deleted from a client.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /glossaries/{series}/names/{name} {
+      allow read: if request.auth != null && series.size() <= 80;
+      allow create, update: if request.auth != null
+        && series.size() <= 80
+        && name.size() <= 120
+        && request.resource.data.keys().hasOnly(['src', 'dst', 'series', 'updatedAt'])
+        && request.resource.data.src is string
+        && request.resource.data.src.size() >= 1
+        && request.resource.data.src.size() <= 40
+        && request.resource.data.dst is string
+        && request.resource.data.dst.size() >= 1
+        && request.resource.data.dst.size() <= 40
+        && request.resource.data.series is string
+        && request.resource.data.series.size() <= 120
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+
+    // Anonymous usage stats: one record per translation run. Write-only for
+    // clients (nobody can read others' records), counts only, all capped. A
+    // function rolls them into stats/{day} and deletes them.
+    match /usage_events/{id} {
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(['surface', 'mode', 'pages', 'device', 'cloud', 'seconds', 'chapter', 'day', 'uid', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.surface in ['web', 'extension']
+        && request.resource.data.mode in ['auto', 'device', 'cloud']
+        && request.resource.data.pages is int && request.resource.data.pages >= 1 && request.resource.data.pages <= 500
+        && request.resource.data.device is int && request.resource.data.device >= 0 && request.resource.data.device <= 5000
+        && request.resource.data.cloud is int && request.resource.data.cloud >= 0 && request.resource.data.cloud <= 5000
+        && request.resource.data.seconds is int && request.resource.data.seconds >= 0 && request.resource.data.seconds <= 36000
+        && request.resource.data.chapter is bool
+        && request.resource.data.day is string && request.resource.data.day.size() == 10;
+      allow read, update, delete: if false;
+    }
+
+    // All-time totals shown on the demo page. Only the function writes them.
+    match /stats_public/{doc} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

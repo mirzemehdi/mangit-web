@@ -1,0 +1,11 @@
+Fonts used on the Mangit website (headings) and web tools (speech bubble maker, name card, quizzes).
+All four are licensed under the SIL Open Font License, Version 1.1 (OFL-1.1). Full text and copyright lines: OFL.txt (this folder). Official text:
+https://openfontlicense.org/open-font-license-official-text/
+
+- Bangers (bangers-latin-400-normal.woff2), designed by Vernon Adams. OFL-1.1.
+- Baloo 2 (baloo-2-latin-700-normal.woff2), designed by Ek Type. OFL-1.1.
+- Caveat (caveat-latin-700-normal.woff2), designed by Pablo Impallari. OFL-1.1.
+- Sora (sora-latin-700-normal.woff2), by the Sora Project Authors. OFL-1.1. Used for headings.
+
+Files are the Latin subsets as packaged by Fontsource (fontsource.org), unmodified.
+Licence checked on fontsource.org on 2026-10-24.

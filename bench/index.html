@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mangit Lens benchmark</title>
+    <style>
+      body { font: 14px/1.5 system-ui, sans-serif; margin: 32px; color: #111; max-width: 1100px; }
+      table { border-collapse: collapse; margin-top: 16px; font-variant-numeric: tabular-nums; }
+      th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: right; }
+      th:first-child, td:first-child { text-align: left; }
+      .env { color: #555; }
+      fieldset { display: inline-flex; gap: 12px; border: 1px solid #ccc; border-radius: 8px; }
+      button { padding: 8px 16px; font: inherit; }
+    </style>
+  </head>
+  <body>
+    <h1>Mangit Lens benchmark</h1>
+    <p>15 pages (Japanese vertical, Korean, Chinese) with known bubble positions and text, translated to English.</p>
+    <fieldset>
+      <legend>Modes</legend>
+      <label><input type="checkbox" name="mode" value="device" checked /> On-device</label>
+      <label><input type="checkbox" name="mode" value="auto" checked /> Hybrid</label>
+      <label><input type="checkbox" name="mode" value="cloud" checked /> Cloud</label>
+    </fieldset>
+    <label>Pages per chapter <input id="limit" type="number" value="5" min="1" max="5" style="width:4em" /></label>
+    <label><input id="glossary" type="checkbox" /> Glossary</label>
+    <button id="run" type="button">Run</button>
+    <p id="log" role="status"></p>
+    <div id="out"></div>
+    <p><a id="download" hidden>Download results JSON</a></p>
+    <script type="module" src="bench.js"></script>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mangit Lens: translate manga on your own computer</title>
+    <meta name="description" content="Mangit Lens translates manga and comic speech bubbles in Chrome. Gemini Nano reads them on your computer; bubbles it finds hard go to Gemini in the cloud. Free and open source." />
+    <link rel="icon" href="icons/icon32.png" />
+    <link rel="preload" href="fonts/sora-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="fonts/baloo-2-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="overlay.css" />
+  </head>
+  <body>
+    <header class="site-head">
+      <div class="wrap head-row">
+        <a class="brand" href="./" aria-label="Mangit Lens home">
+          <img src="icons/icon48.png" alt="" width="28" height="28" />
+          <span>Mangit Lens</span>
+        </a>
+        <nav class="head-nav" aria-label="Main">
+          <a href="#how">How it works</a>
+          <a href="https://github.com/mirzemehdi/mangit-lens" rel="noopener">Source</a>
+          <a class="cta" href="#install">Add to Chrome</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="wrap intro">
+        <h1>Read manga in English, <em>on your own computer</em>.</h1>
+        <p class="dek">
+          Gemini Nano in Chrome reads each speech bubble locally: private, free and offline. Bubbles it finds hard go to
+          Gemini in the cloud. Try a demo page below, or open a whole chapter: PDF, CBZ, CBR or EPUB.
+        </p>
+      </section>
+
+      <section class="wrap tool" aria-label="Try Mangit Lens">
+        <div class="stage-col">
+          <div class="pickers">
+            <div class="seg" role="group" aria-label="Demo chapter">
+              <button type="button" data-chapter="ja_school" aria-pressed="true">日本語</button>
+              <button type="button" data-chapter="ko_office" aria-pressed="false">한국어</button>
+              <button type="button" data-chapter="zh_sect" aria-pressed="false">中文</button>
+            </div>
+            <label class="upload">
+              <input id="file" type="file" />
+              <span>Open a page or chapter <small>Image, PDF, CBZ, CBR, EPUB</small></span>
+            </label>
+          </div>
+          <div class="pager" aria-label="Pages">
+            <button id="prev" type="button" aria-label="Previous page">‹</button>
+            <p id="pos" aria-live="polite">Page 1 of 5</p>
+            <button id="next" type="button" aria-label="Next page">›</button>
+          </div>
+          <div id="stage" class="stage" tabindex="-1">
+            <img id="page" alt="Manga page to translate" width="1000" height="1500" />
+            <div id="layer" class="mangit-lens-layer"></div>
+            <p id="drop-hint" class="drop-hint" hidden>Drop the page here</p>
+          </div>
+          <p class="fine">No file handy? Try a sample chapter: <a href="samples/sakuragaoka-kendo-ch1.pdf" download>PDF</a> · <a href="samples/monday-team-lead-ep1.cbz" download>CBZ</a> · <a href="samples/qingyun-sect-ch1.epub" download>EPUB</a>. Download it, then open it above.</p>
+          <p class="fine">Demo chapters are our own drawings. Files you open are read in your browser and never uploaded; in On-device mode no page leaves your computer at all.</p>
+        </div>
+
+        <aside class="panel" aria-label="Controls">
+          <p id="device" class="device" data-state="checking">Checking for Gemini Nano…</p>
+
+          <fieldset class="routes">
+            <legend>Where the AI runs</legend>
+            <label><input type="radio" name="route" value="auto" checked /><span><b>Hybrid</b>Nano first, cloud for hard bubbles</span></label>
+            <label><input type="radio" name="route" value="device" /><span><b>On-device</b>Nothing leaves this computer</span></label>
+            <label><input type="radio" name="route" value="cloud" /><span><b>Cloud</b>Every bubble at once, fastest</span></label>
+          </fieldset>
+
+          <label class="field">
+            <span>Translate to</span>
+            <select id="target"></select>
+          </label>
+
+          <button id="go" class="go" type="button">Translate page</button>
+          <button id="all" class="quiet" type="button">Translate whole chapter</button>
+          <p id="status" class="status" role="status" aria-live="polite"></p>
+
+          <dl class="stats">
+            <div><dt>On your computer</dt><dd id="s-device">–</dd></div>
+            <div><dt>Cloud</dt><dd id="s-cloud">–</dd></div>
+            <div><dt>First bubble</dt><dd id="s-first">–</dd></div>
+            <div><dt>Whole page</dt><dd id="s-total">–</dd></div>
+          </dl>
+          <p id="privacy" class="privacy"></p>
+          <p class="legend"><i class="dot device"></i> read on your computer <i class="dot cloud"></i> read in the cloud. Hover a bubble to see the original.</p>
+          <button id="toggle" class="quiet" type="button" disabled>Show original</button>
+          <div id="downloads" class="downloads">
+            <p>Download translated</p>
+            <div><button id="dl-png" class="quiet" type="button" disabled>This page (PNG)</button></div>
+            <div><button id="dl-cbz" class="quiet" type="button" disabled>Chapter (CBZ)</button><button id="dl-pdf" class="quiet" type="button" disabled>Chapter (PDF)</button></div>
+            <p id="dl-note" class="dl-note">Translate a page first.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="how" class="wrap how">
+        <h2>How the hybrid works</h2>
+        <ol class="steps">
+          <li>
+            <h3>Find the bubbles without a model</h3>
+            <p>A few milliseconds of image analysis find enclosed light regions with ink inside, their shape and which way the text runs. No AI call, nothing sent.</p>
+          </li>
+          <li>
+            <h3>Gemini Nano reads the easy ones</h3>
+            <p>Each bubble is cropped small and read on your computer through Firebase AI Logic. Horizontal text, Korean and Chinese, works well on-device.</p>
+          </li>
+          <li>
+            <h3>The cloud takes the hard ones, in parallel</h3>
+            <p>Vertical Japanese is Nano's weak spot, so those bubbles go straight to Gemini in the cloud while Nano keeps reading. Bubbles Nano is unsure about get a second opinion.</p>
+          </li>
+          <li>
+            <h3>Names stay consistent</h3>
+            <p>Character names you add are shared per series through Firestore and used by both models, so every reader of a series sees the same spelling.</p>
+          </li>
+        </ol>
+        <div id="bench" class="bench"></div>
+        <p id="totals" class="totals" hidden></p>
+      </section>
+
+      <section id="install" class="wrap install">
+        <h2>Use it on any page</h2>
+        <p>The Chrome extension adds a side panel that translates the page you're reading, with the same hybrid engine.</p>
+        <ol class="install-steps">
+          <li>Download the latest <a href="https://github.com/mirzemehdi/mangit-lens/releases/latest">mangit-lens.zip</a> and unzip it.</li>
+          <li>Open <code>chrome://extensions</code>, turn on Developer mode, click <b>Load unpacked</b> and pick the folder.</li>
+          <li>Open a manga page, click the Mangit Lens icon and press <b>Translate this page</b> (or Alt+T).</li>
+        </ol>
+        <p class="privacy-note">Privacy: Mangit Lens counts anonymous totals (pages, modes, how many bubbles stayed on your computer) to show how it's used. No images, text, page addresses or names are ever stored.</p>
+        <p class="app-note">Reading on your phone? <a href="https://mangit.app/?utm_source=mangit_lens&amp;utm_medium=web_demo">Mangit</a> translates whole chapters with cleaned art on iOS and Android.</p>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <div class="wrap">
+        <p>Mangit Lens is open source (Apache 2.0). Built with Firebase AI Logic hybrid inference for #BuildHybridAI.</p>
+      </div>
+    </footer>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

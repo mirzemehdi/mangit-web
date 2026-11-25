@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Mangit Lens: Manga Translator",
+  "short_name": "Mangit Lens",
+  "version": "0.1.0",
+  "description": "Translate manga and comic pages in your browser. Runs on-device with Gemini Nano when it can, falls back to the cloud when it can't.",
+  "minimum_chrome_version": "139",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Open Mangit Lens",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    { "resources": ["fonts/baloo-2-latin-700-normal.woff2"], "matches": ["<all_urls>"] }
+  ],
+  "permissions": ["sidePanel", "activeTab", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "commands": {
+    "translate-page": {
+      "suggested_key": { "default": "Alt+T", "mac": "Alt+T" },
+      "description": "Translate the visible manga page"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "mangit-lens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Translate manga pages in Chrome with hybrid on-device + cloud AI (Firebase AI Logic).",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "zip": "node scripts/build.mjs && cd dist && zip -qr ../mangit-lens.zip .",
+    "bench": "node scripts/build.mjs && npx --yes http-server bench-dist -p 5178 -c-1",
+    "test:detector": "node scripts/test-detector.mjs"
+  },
+  "dependencies": {
+    "firebase": "^13.4.0",
+    "node-unrar-js": "^2.0.2",
+    "pdfjs-dist": "^6.5.438"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "fflate": "^0.8.3",
+    "pdf-lib": "^1.17.1",
+    "playwright-core": "^1.65.1",
+    "pngjs": "^7.0.0"
+  }
+}

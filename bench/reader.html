@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>桜ヶ丘高校 剣道部 – Chapter 1 | Mangit Lens demo reader</title>
+    <style>
+      body { margin: 0; background: #1b1b1f; color: #ddd; font: 15px/1.5 system-ui, sans-serif; }
+      header { padding: 14px 20px; background: #111; display: flex; gap: 16px; align-items: baseline; }
+      header h1 { margin: 0; font-size: 17px; }
+      header nav { margin-left: auto; display: flex; gap: 12px; }
+      header a { color: #9ad; }
+      main { display: grid; gap: 12px; justify-content: center; padding: 20px 0 80px; }
+      main img { width: min(720px, 96vw); height: auto; display: block; background: #fff; }
+      .note { text-align: center; color: #888; font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 id="title"></h1>
+      <nav aria-label="Chapters">
+        <a href="?c=ja_school">日本語</a>
+        <a href="?c=ko_office">한국어</a>
+        <a href="?c=zh_sect">中文</a>
+      </nav>
+    </header>
+    <main id="pages"></main>
+    <p class="note">Demo chapters drawn for the Mangit Lens benchmark. Original work, free to use.</p>
+    <script>
+      const chapters = {
+        ja_school: { title: "桜ヶ丘高校 剣道部 – 第1話", lang: "ja" },
+        ko_office: { title: "월요일의 팀장님 – 1화", lang: "ko" },
+        zh_sect: { title: "青云宗 – 第一章", lang: "zh" },
+      };
+      const c = new URLSearchParams(location.search).get("c") ?? "ja_school";
+      const info = chapters[c] ?? chapters.ja_school;
+      document.documentElement.lang = info.lang;
+      document.title = `${info.title} | Mangit Lens demo reader`;
+      document.getElementById("title").textContent = info.title;
+      const main = document.getElementById("pages");
+      for (let p = 1; p <= 5; p++) {
+        const img = new Image(1000, 1500);
+        img.src = `data/${c}/p${p}.png`;
+        img.alt = `Page ${p}`;
+        main.appendChild(img);
+      }
+    </script>
+  </body>
+</html>

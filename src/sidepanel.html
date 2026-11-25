@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mangit Lens</title>
+    <link rel="stylesheet" href="sidepanel.css" />
+  </head>
+  <body>
+    <header class="top">
+      <img src="icons/icon48.png" alt="" width="28" height="28" />
+      <h1>Mangit Lens</h1>
+      <span id="device-status" class="chip" data-state="checking">Checking device…</span>
+    </header>
+
+    <main>
+      <section id="setup" class="setup" hidden aria-labelledby="setup-title">
+        <h2 id="setup-title">Translate on your own computer</h2>
+        <p>Chrome can run Gemini Nano locally. Pages it reads never leave your computer, it costs nothing and works offline. It's a one-time download that Chrome manages.</p>
+        <div class="setup-actions">
+          <button id="setup-go" type="button" class="primary-small">Set up on-device</button>
+          <button id="setup-skip" type="button" class="link">Not now, use the cloud</button>
+        </div>
+        <div class="meter setup-meter" aria-hidden="true"><div id="setup-fill"></div></div>
+        <p id="setup-status" class="help" role="status" aria-live="polite"></p>
+      </section>
+
+      <button id="translate" class="primary" type="button">
+        Translate this page
+        <kbd>Alt T</kbd>
+      </button>
+      <p id="progress" class="progress" role="status" aria-live="polite"></p>
+      <div class="meter" aria-hidden="true"><div id="meter-fill"></div></div>
+
+      <section class="controls" aria-label="Options">
+        <fieldset class="segmented">
+          <legend>Where the AI runs</legend>
+          <label><input type="radio" name="route" value="auto" checked /> <span>Hybrid</span></label>
+          <label><input type="radio" name="route" value="device" /> <span>On-device</span></label>
+          <label><input type="radio" name="route" value="cloud" /> <span>Cloud</span></label>
+        </fieldset>
+        <p id="route-help" class="help"></p>
+
+        <label class="field">
+          <span>Translate to</span>
+          <select id="target"></select>
+        </label>
+      </section>
+
+      <section class="stats" aria-label="Last page">
+        <h2>Last page</h2>
+        <dl>
+          <div><dt>Bubbles</dt><dd id="stat-bubbles">–</dd></div>
+          <div><dt>On-device</dt><dd id="stat-device">–</dd></div>
+          <div><dt>Cloud</dt><dd id="stat-cloud">–</dd></div>
+          <div><dt>Time</dt><dd id="stat-time">–</dd></div>
+        </dl>
+        <p id="stat-privacy" class="privacy"></p>
+        <p id="stat-note" class="help"></p>
+      </section>
+
+      <div class="row">
+        <button id="toggle" type="button">Show original</button>
+        <button id="clear" type="button">Clear</button>
+      </div>
+
+      <button id="open-file" type="button" class="file-btn">Open a PDF, CBZ, CBR or EPUB…</button>
+
+      <section class="glossary" aria-labelledby="glossary-title">
+        <h2 id="glossary-title">Character names</h2>
+        <label class="field">
+          <span>Series</span>
+          <input id="series" placeholder="Series name" autocomplete="off" />
+        </label>
+        <p class="help">Names you add keep translations consistent, on-device and in the cloud. Shared names come from other readers of this series.</p>
+        <ul id="glossary-list"></ul>
+        <form id="glossary-form" class="glossary-add">
+          <input id="g-src" placeholder="Original (ルフィ)" aria-label="Original name" maxlength="40" required />
+          <input id="g-dst" placeholder="Translation (Luffy)" aria-label="Translated name" maxlength="40" required />
+          <button type="submit" aria-label="Add name">Add</button>
+        </form>
+        <label class="check"><input id="g-share" type="checkbox" checked /> Share names with other readers of this series</label>
+      </section>
+    </main>
+
+    <footer>
+      <a href="https://mangit.app/?utm_source=mangit_lens&utm_medium=extension" target="_blank" rel="noopener">
+        Reading on your phone? <strong>Get the Mangit app</strong> for full-chapter translations with cleaned art.
+      </a>
+    </footer>
+
+    <script type="module" src="sidepanel.js"></script>
+  </body>
+</html>
