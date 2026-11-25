@@ -16,7 +16,7 @@ Platform: **Web (Chrome)**. Paste each section into the matching Devpost field.
 
 ## Inspiration
 
-We build [Mangit](https://mangit.app), a mobile app that translates manga, manhwa and manhua pages. Our readers kept telling us two things: they read a lot on computers, and they don't love uploading every page they read. Chrome now ships Gemini Nano, a model that can read images on the reader's own machine. We wanted to see how far a small on-device model can go on real comic pages, and to use the cloud only where it can't.
+We build [Mangit](https://mangit.app), a mobile app that translates manga, manhwa and manhua pages, live on the App Store and Google Play. It gets about 1,500 new readers a month (about 1,050 on Android and 500 on iOS, autumn 2026), so this is a problem we see every day: people want to read chapters that will never be officially translated, in their own language, right now. Our readers kept telling us two things: they read a lot on computers, and they don't love uploading every page they read. Chrome now ships Gemini Nano, a model that can read images on the reader's own machine. We wanted to see how far a small on-device model can go on real comic pages, and to use the cloud only where it can't.
 
 ## What it does
 
@@ -97,7 +97,7 @@ firebase-ai-logic, gemini-nano, chrome-prompt-api, gemini, agent-platform, fireb
 
 **Core value the existing app provides:** Mangit (live on the App Store and Google Play) gave us the problem knowledge: how readers want bubbles handled, why consistent character names matter, and where translation goes wrong (vertical text, names). Mangit Web is a separate, open, free project that applies that experience to on-device AI in the browser.
 
-**How widely it's used (optional):** (owner to fill: Mangit installs or readers)
+**How widely it's used (optional):** Mangit gets about 1,500 new readers a month on iOS and Android (about 1,050 Android, 500 iOS, autumn 2026), and Mangit Web is linked from mangit.app, so it reaches readers from day one.
 
 ## Testing instructions for judges
 
