@@ -9,6 +9,8 @@ In desktop Chrome, Gemini Nano reads the speech bubbles on your own computer; on
 
 ### [→ Translate a page now at mangit.app/translate](https://mangit.app/translate/?utm_source=github&utm_medium=readme)
 
+▶ **[Watch the 2-minute demo](https://youtu.be/3LdZATQYbgc)**
+
 <a href="https://mangit.app/translate/?utm_source=github&utm_medium=readme"><img src="https://mangit.app/translate/og.jpg" alt="Mangit Web translating a Japanese manga page into English in the browser" width="720" /></a>
 
 **Also on your phone:** the Mangit app for iPhone and Android redraws whole chapters in your language.

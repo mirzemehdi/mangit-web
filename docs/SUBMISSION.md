@@ -10,7 +10,7 @@ Platform: **Web (Chrome)**. Paste each section into the matching Devpost field.
 - Try it (no install): https://mangit.app/translate/
 - Code (Apache 2.0): https://github.com/mirzemehdi/mangit-web
 - Extension build for judges: https://github.com/mirzemehdi/mangit-web/releases/latest
-- Demo video: (YouTube link)
+- Demo video: https://youtu.be/3LdZATQYbgc
 
 ---
 
