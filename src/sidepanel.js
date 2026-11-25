@@ -63,6 +63,7 @@ let busy = false;
 let autoPending = false; // an auto run asked for while another run was busy
 const autoSites = new Set(); // sites the reader translated by hand
 const originByTab = new Map(); // last site seen in each tab, to ask for just that site
+let lastOrigin = ""; // site of the page translated most recently
 let glossary = {}; // merged: shared entries, then the reader's own on top
 let mine = {};
 let shared = {};
@@ -93,6 +94,8 @@ async function init() {
   // Auto-translate: on by default. Scrolling translates new bubbles on a page
   // the reader already translated; with all-sites access, the next pages of
   // the same site translate as they load.
+  const session = await chrome.storage.session.get("originByTab").catch(() => ({}));
+  for (const [id, o] of Object.entries(session.originByTab ?? {})) originByTab.set(Number(id), o);
   const stored = await chrome.storage.local.get(["autoTranslate", "autoSites"]);
   ui.auto.checked = stored.autoTranslate !== false;
   for (const h of stored.autoSites ?? []) autoSites.add(h);
@@ -101,8 +104,7 @@ async function init() {
     if (ui.auto.checked) {
       // Ask now, from the click, for the site being read, so its next
       // chapters translate without a prompt. Only that site.
-      const origins = [...new Set(originByTab.values())].map((o) => `${o}/*`);
-      if (origins.length) chrome.permissions.request({ origins }).catch(() => false);
+      if (lastOrigin) chrome.permissions.request({ origins: [`${lastOrigin}/*`] }).catch(() => false);
       say("Auto-translate is on. Scroll and new bubbles translate by themselves.");
     } else say("Auto-translate is off.");
   });
@@ -122,17 +124,24 @@ async function init() {
     if (!autoSites.has(host)) return;
     setTimeout(() => translateVisible({ auto: true }), 1200); // let images load
   });
-  // Must call permissions.request straight from the click (a user gesture).
+  // permissions.request must be called straight from the click (a user gesture).
+  const afterGrant = (granted, again) => {
+    if (!granted) return say("No problem. Click the Mangit icon or press Alt+T on a page, then Translate.");
+    ui.access.hidden = true;
+    loadGlossary();
+    if (again) translateVisible();
+    else say("Done. Next chapters on this site translate as you read.");
+  };
   $("access-allow").addEventListener("click", () => {
-    const origin = ui.access.dataset.origin;
-    chrome.permissions.request({ origins: [origin ? `${origin}/*` : "<all_urls>"] }).then((granted) => {
-      if (!granted) return say("No problem. Click the Mangit icon or press Alt+T on a page, then Translate.");
-      ui.access.hidden = true;
-      loadGlossary();
-      translateVisible();
-    });
+    const { origin, mode } = ui.access.dataset;
+    if (!origin) return;
+    chrome.permissions.request({ origins: [`${origin}/*`] }).then((g) => afterGrant(g, mode === "needed"));
   });
-  $("access-close").addEventListener("click", () => (ui.access.hidden = true));
+  $("access-close").addEventListener("click", () => {
+    const { origin, mode } = ui.access.dataset;
+    if (mode === "offer" && origin) chrome.storage.local.set({ [`accessDeclined:${origin}`]: true });
+    ui.access.hidden = true;
+  });
   ui.toggle.addEventListener("click", toggleOriginal);
   ui.clear.addEventListener("click", clearPage);
   document.getElementById("open-file").addEventListener("click", () =>
@@ -335,6 +344,8 @@ async function translateVisible({ auto = false } = {}) {
     if (tab.url) {
       try {
         originByTab.set(tab.id, new URL(tab.url).origin);
+        lastOrigin = new URL(tab.url).origin;
+        chrome.storage.session.set({ originByTab: Object.fromEntries(originByTab) }).catch(() => {});
       } catch {}
     }
     if (!auto && tab.url) {
@@ -382,6 +393,7 @@ async function translateVisible({ auto = false } = {}) {
     recordUsage({ mode: chosen, pages: scan.images.length, device: tally.device, cloud: tally.cloud, seconds: Number(seconds), chapter: false });
     noteRun({ mode: chosen, target, pages: scan.images.length, bubbles: tally.total, device: tally.device, cloud: tally.cloud, seconds: Number(seconds), chapter: false });
     if (tally.total) maybeAskForFeedback({ host: $("ask"), storage }).catch(() => {});
+    if (!auto && tally.total && ui.auto.checked) offerSiteAccess(tab).catch(() => {});
     say(
       tally.total
         ? `Done. ${tally.total} bubble${tally.total === 1 ? "" : "s"} translated.`
@@ -390,11 +402,8 @@ async function translateVisible({ auto = false } = {}) {
   } catch (err) {
     if (err instanceof AccessNeededError) {
       const tab = await activeTab().catch(() => null);
-      const origin = originByTab.get(tab?.id) ?? "";
-      ui.access.dataset.origin = origin;
-      $("access-allow").textContent = origin ? `Allow on ${new URL(origin).hostname}` : "Allow on all sites";
-      ui.access.hidden = false;
-      say("Mangit needs your OK to read this page.");
+      showAccess("needed", originByTab.get(tab?.id) ?? "");
+      say(originByTab.get(tab?.id) ? "Mangit needs your OK to read this page." : "Click the Mangit icon, then translate.");
       return;
     }
     console.error(err);
@@ -551,6 +560,38 @@ async function clearPage() {
 
 class UserFacingError extends Error {}
 class AccessNeededError extends Error {}
+
+async function offerSiteAccess(tab) {
+  if (!tab?.url || !/^https?:/.test(tab.url)) return;
+  const origin = new URL(tab.url).origin;
+  if (await chrome.permissions.contains({ origins: [`${origin}/*`] })) return;
+  if ((await chrome.storage.local.get(`accessDeclined:${origin}`))[`accessDeclined:${origin}`]) return;
+  showAccess("offer", origin);
+}
+
+// The access card. "needed": this page can't be read yet. "offer": the page
+// was translated (via the icon), offer access to just this site so next
+// chapters and auto-translate work without clicking the icon again.
+function showAccess(mode, origin) {
+  const host = origin ? new URL(origin).hostname : "";
+  ui.access.dataset.mode = mode;
+  ui.access.dataset.origin = origin || "";
+  const title = $("access-title");
+  const text = $("access-text");
+  const allow = $("access-allow");
+  if (mode === "needed" && !origin) {
+    title.textContent = "Click the Mangit icon to translate this page";
+    text.innerHTML = "Chrome lets Mangit see a page only after you click its icon in the toolbar or press <kbd>Alt</kbd> <kbd>T</kbd>. Do that, then translate. Mangit can't see the page until you do.";
+    allow.hidden = true;
+  } else {
+    title.textContent = mode === "needed" ? `Let Mangit read ${host}` : `Keep translating on ${host}?`;
+    text.textContent =
+      "Chrome forgets Mangit's access every time the page changes. Allow it on this site only, so next chapters and auto-translate work without clicking the icon again. Mangit still only reads a page when you translate.";
+    allow.hidden = false;
+    allow.textContent = `Allow on ${host}`;
+  }
+  ui.access.hidden = false;
+}
 
 // Chrome's errors when the extension has no access to the tab.
 const needsAccess = (err) =>
