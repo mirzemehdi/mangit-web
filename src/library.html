@@ -23,14 +23,17 @@
       <section class="wrap tool" aria-label="Manga translator">
         <div class="stage-col">
           <div class="pickers">
-            <div class="seg" role="group" aria-label="Demo chapter">
-              <button type="button" data-chapter="ja_school" aria-pressed="true">日本語</button>
-              <button type="button" data-chapter="ko_office" aria-pressed="false">한국어</button>
-              <button type="button" data-chapter="zh_sect" aria-pressed="false">中文</button>
+            <div class="demo-pick">
+              <span id="demo-label" class="demo-label">Try a demo:</span>
+              <div class="seg" role="group" aria-labelledby="demo-label">
+                <button type="button" data-chapter="ja_school" aria-pressed="true">Japanese manga</button>
+                <button type="button" data-chapter="ko_office" aria-pressed="false">Korean manhwa</button>
+                <button type="button" data-chapter="zh_sect" aria-pressed="false">Chinese manhua</button>
+              </div>
             </div>
             <label class="upload">
               <input id="file" type="file" />
-              <span>Open a page or chapter <small>Image, PDF, CBZ, CBR, EPUB</small></span>
+              <span>Or open your own page or chapter <small>Image, PDF, CBZ, CBR, EPUB</small></span>
             </label>
           </div>
           <div class="pager" aria-label="Pages">

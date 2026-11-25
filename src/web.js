@@ -48,10 +48,11 @@ const DEVICE_OPTS = {
   expectedInputs: [{ type: "image" }, { type: "text", languages: ["en", "ja"] }],
   expectedOutputs: [{ type: "text", languages: ["en"] }],
 };
+// Demo chapters: our own drawings, one per source language.
 const DEMO = {
-  ja_school: "桜ヶ丘高校 剣道部",
-  ko_office: "월요일의 팀장님",
-  zh_sect: "青云宗",
+  ja_school: "Japanese demo: Sakuragaoka Kendo Club",
+  ko_office: "Korean demo: Monday Team Lead",
+  zh_sect: "Chinese demo: Qingyun Sect",
 };
 
 let config;
