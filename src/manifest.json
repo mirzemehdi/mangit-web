@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Mangit: Manga Translator for Chrome",
   "short_name": "Mangit",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Translate manga, manhwa and manhua on any website. Free, about 2 seconds a page, with on-device AI when Chrome has it.",
   "minimum_chrome_version": "139",
   "icons": {

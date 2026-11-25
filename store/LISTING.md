@@ -1,6 +1,6 @@
 # Chrome Web Store listing: Mangit
 
-Upload: `store/mangit-chrome-0.2.3.zip`
+Upload: `store/mangit-chrome-0.2.4.zip`
 
 ## Store listing tab
 

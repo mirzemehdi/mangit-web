@@ -153,8 +153,16 @@ async function init() {
     chrome.storage.local.set({ setupDismissed: true });
     ui.setup.hidden = true;
   });
+  // Toolbar icon or Alt+T: translate right away (the click also gave access).
   chrome.runtime.onMessage.addListener((msg) => {
-    if (msg?.type === "lens/translate-shortcut") translateVisible();
+    if (msg?.type !== "lens/translate-shortcut") return;
+    chrome.storage.session.remove("translateRequest").catch(() => {});
+    translateVisible();
+  });
+  chrome.storage.session.get("translateRequest").then(({ translateRequest: r }) => {
+    if (!r || Date.now() - r.at > 10000) return;
+    chrome.storage.session.remove("translateRequest").catch(() => {});
+    translateVisible();
   });
   chrome.tabs.onActivated.addListener(() => loadGlossary());
   chrome.tabs.onUpdated.addListener((_id, info) => (info.url || info.title) && loadGlossary());
@@ -403,7 +411,7 @@ async function translateVisible({ auto = false } = {}) {
     if (err instanceof AccessNeededError) {
       const tab = await activeTab().catch(() => null);
       showAccess("needed", originByTab.get(tab?.id) ?? "");
-      say(originByTab.get(tab?.id) ? "Mangit needs your OK to read this page." : "Click the Mangit icon, then translate.");
+      say(originByTab.get(tab?.id) ? "Mangit needs your OK to read this page." : "Click the Mangit icon in the toolbar to translate.");
       return;
     }
     console.error(err);
@@ -580,8 +588,8 @@ function showAccess(mode, origin) {
   const text = $("access-text");
   const allow = $("access-allow");
   if (mode === "needed" && !origin) {
-    title.textContent = "Click the Mangit icon to translate this page";
-    text.innerHTML = "Chrome lets Mangit see a page only after you click its icon in the toolbar or press <kbd>Alt</kbd> <kbd>T</kbd>. Do that, then translate. Mangit can't see the page until you do.";
+    title.textContent = "Click the Mangit icon to translate";
+    text.innerHTML = "On a new site, Chrome lets Mangit see the page only after you click the Mangit icon in the toolbar (or press <kbd>Alt</kbd> <kbd>T</kbd>). One click translates the page, and Mangit can then remember the site for you.";
     allow.hidden = true;
   } else {
     title.textContent = mode === "needed" ? `Let Mangit read ${host}` : `Keep translating on ${host}?`;
