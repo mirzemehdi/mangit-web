@@ -11,6 +11,7 @@ import { renderBubbles, refitLayer, whenLetteringReady } from "./lib/overlay.js"
 import { ACCEPT, ChapterError, openChapter } from "./lib/chapter.js";
 import { resolveRoute, storageFor } from "./lib/routeDialog.js";
 import { publicTotals, recordUsage } from "./lib/usage.js";
+import { maybeAskForFeedback, noteRun, openFeedback } from "./lib/feedback.js";
 
 const storage = storageFor(process.env.LENS_TARGET);
 
@@ -314,7 +315,9 @@ async function translateCurrent() {
     const r = await translatePage(index, { live: true, chosen });
     recordUsage({ mode: chosen, pages: 1, device: r.tally.device, cloud: r.tally.cloud, seconds: r.total, chapter: false });
     const n = r.bubbles.length;
+    noteRun({ mode: chosen, target: ui.target.value, pages: 1, bubbles: n, device: r.tally.device, cloud: r.tally.cloud, seconds: r.total, chapter: false });
     say(n ? `Done. ${n} bubble${n === 1 ? "" : "s"} translated. Hover one to see the original.` : "No text found on this page.");
+    if (n) maybeAskForFeedback({ host: $("ask"), storage }).catch(() => {});
   } catch (err) {
     console.error(err);
     say(friendly(err, route()));
@@ -353,6 +356,8 @@ async function translateAll() {
     }
     const secs = ((performance.now() - started) / 1000).toFixed(0);
     recordUsage({ mode: chosen, pages: pagesDone, device, cloud, seconds: Number(secs), chapter: true });
+    noteRun({ mode: chosen, target, pages: pagesDone, device, cloud, seconds: Number(secs), chapter: true });
+    if (pagesDone && !stopAll) maybeAskForFeedback({ host: $("ask"), storage }).catch(() => {});
     say(
       stopAll
         ? `Stopped. ${results.size} of ${total} pages translated.`
@@ -503,4 +508,10 @@ function renderBench() {
     <thead><tr><th scope="col">Mode</th><th scope="col">Text read right</th><th scope="col">Names right</th><th scope="col">Bubbles on your computer</th><th scope="col">First bubble</th><th scope="col">Whole page</th></tr></thead>
     <tbody>${rows.map((r) => `<tr><th scope="row">${r[0]}</th>${r.slice(1).map((c) => `<td>${c}</td>`).join("")}</tr>`).join("")}</tbody></table>
     <p class="fine">*A whole chapter sent at once hits the per-user rate limit; one page in normal use takes 2–4 s.</p>`;
+}
+
+// ------------------------------------------------------------ feedback
+
+for (const b of document.querySelectorAll("[data-feedback]")) {
+  b.addEventListener("click", () => openFeedback({ storage }));
 }

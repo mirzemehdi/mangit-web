@@ -43,6 +43,23 @@ service cloud.firestore {
       allow read, update, delete: if false;
     }
 
+    // Reader feedback and bug reports. Write-only for clients: nobody can read
+    // anyone's messages from the app; the team reads them with admin access.
+    match /feedback/{id} {
+      allow create: if request.auth != null
+        && request.resource.data.keys().hasOnly(['kind', 'message', 'rating', 'email', 'surface', 'context', 'uid', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.kind in ['bug', 'translation', 'idea', 'other', 'rating']
+        && request.resource.data.rating in ['up', 'down', 'none']
+        && request.resource.data.surface in ['web', 'extension']
+        && request.resource.data.message is string && request.resource.data.message.size() <= 2000
+        && (request.resource.data.kind == 'rating' || request.resource.data.message.size() >= 3)
+        && request.resource.data.email is string && request.resource.data.email.size() <= 200
+        && request.resource.data.context is string && request.resource.data.context.size() <= 800;
+      allow read, update, delete: if false;
+    }
+
     // All-time totals shown on the demo page. Only the function writes them.
     match /stats_public/{doc} {
       allow read: if request.auth != null;

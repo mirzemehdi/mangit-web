@@ -1,6 +1,7 @@
 import { loadConfig, refreshConfig } from "./lib/firebase.js";
 import { resolveRoute, storageFor } from "./lib/routeDialog.js";
 import { recordUsage } from "./lib/usage.js";
+import { maybeAskForFeedback, noteRun, openFeedback } from "./lib/feedback.js";
 
 const storage = storageFor("extension");
 import {
@@ -299,6 +300,8 @@ async function translateVisible() {
     const seconds = ((performance.now() - started) / 1000).toFixed(1);
     showStats(tally, seconds);
     recordUsage({ mode: chosen, pages: scan.images.length, device: tally.device, cloud: tally.cloud, seconds: Number(seconds), chapter: false });
+    noteRun({ mode: chosen, target, pages: scan.images.length, bubbles: tally.total, device: tally.device, cloud: tally.cloud, seconds: Number(seconds), chapter: false });
+    if (tally.total) maybeAskForFeedback({ host: $("ask"), storage }).catch(() => {});
     say(
       tally.total
         ? `Done. ${tally.total} bubble${tally.total === 1 ? "" : "s"} translated.`
@@ -526,4 +529,8 @@ async function addGlossaryEntry(event) {
 async function saveMine() {
   await chrome.storage.local.set({ [`glossary:${seriesKey(seriesName)}`]: mine });
   merge();
+}
+
+for (const b of document.querySelectorAll("[data-feedback]")) {
+  b.addEventListener("click", () => openFeedback({ storage }));
 }

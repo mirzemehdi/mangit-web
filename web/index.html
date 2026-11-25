@@ -252,6 +252,7 @@
           <a href="#how">How it works</a>
           <a href="https://mangit.app/guides">Guides</a>
           <a href="#extension">Chrome extension</a>
+          <button type="button" class="nav-btn" data-feedback>Feedback</button>
           <a class="cta" href="https://mangit.app/?utm_source=mangit_web&amp;utm_medium=header">Get the app</a>
         </nav>
       </div>
@@ -315,6 +316,7 @@
           <button id="go" class="go" type="button">Translate page</button>
           <button id="all" class="quiet" type="button">Translate whole chapter</button>
           <p id="status" class="status" role="status" aria-live="polite"></p>
+          <div id="ask"></div>
 
           <dl class="stats">
             <div><dt>On your computer</dt><dd id="s-device">–</dd></div>
@@ -331,6 +333,7 @@
             <div><button id="dl-cbz" class="quiet" type="button" disabled>Chapter (CBZ)</button><button id="dl-pdf" class="quiet" type="button" disabled>Chapter (PDF)</button></div>
             <p id="dl-note" class="dl-note">Translate a page first.</p>
           </div>
+          <button type="button" class="quiet feedback-btn" data-feedback>Send feedback or report a bug</button>
         </aside>
       </section>
 
@@ -414,7 +417,7 @@
     <footer class="site-foot">
       <div class="wrap foot-row">
         <p>Mangit Web is open source (Apache 2.0) on <a href="https://github.com/mirzemehdi/mangit-web">GitHub</a>, built with Firebase AI Logic hybrid inference. By the team behind <a href="https://mangit.app/">Mangit</a>.</p>
-        <nav aria-label="Footer"><a href="https://mangit.app/">Mangit app</a> <a href="https://mangit.app/guides">Guides</a> <a href="https://mangit.app/manga-translator">Manga translator guide</a> <a href="https://mangit.app/privacy-policy">Privacy</a> <a href="https://mangit.app/terms-conditions">Terms</a></nav>
+        <nav aria-label="Footer"><a href="https://mangit.app/">Mangit app</a> <a href="https://mangit.app/guides">Guides</a> <a href="https://mangit.app/manga-translator">Manga translator guide</a> <a href="privacy">Privacy</a> <a href="https://mangit.app/terms-conditions">Terms</a> <button type="button" class="link-btn" data-feedback>Feedback</button></nav>
       </div>
     </footer>
     <script type="module" src="app.js"></script>

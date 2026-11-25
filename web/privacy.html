@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--BASE-->
+    <title>Privacy: Mangit Web and Mangit for Chrome</title>
+    <meta name="description" content="What Mangit Web and the Mangit for Chrome extension process, what is sent to the cloud, what is stored, and what is never collected." />
+    <link rel="canonical" href="https://mangit.app/translate/privacy" />
+    <link rel="icon" href="icons/icon32.png" />
+    <link rel="stylesheet" href="app.css" />
+    <style>
+      .legal { max-width: 46em; padding-top: var(--s7); padding-bottom: var(--s8); }
+      .legal h1 { font-size: clamp(28px, 3vw, 38px); }
+      .legal h2 { margin-top: var(--s7); font-size: 24px; }
+      .legal p, .legal li { color: var(--prose); }
+      .legal ul { padding-left: 1.2em; display: grid; gap: var(--s2); }
+      .legal .updated { color: var(--text-2); font-size: 15px; }
+    </style>
+  </head>
+  <body>
+    <header class="site-head">
+      <div class="wrap head-row">
+        <a class="brand" href="https://mangit.app/" aria-label="Mangit home">
+          <img src="icons/icon48.png" alt="" width="28" height="28" />
+          <span>Mangit</span>
+        </a>
+        <nav class="head-nav" aria-label="Main">
+          <a href="./">Web translator</a>
+          <a href="https://mangit.app/privacy-policy">Mangit app privacy</a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap legal">
+      <h1>Privacy: Mangit Web and Mangit for Chrome</h1>
+      <p class="updated">Updated November 25, 2026. Applies to the web translator at mangit.app/translate and the "Mangit: Manga Translator for Chrome" extension. The Mangit mobile app has <a href="https://mangit.app/privacy-policy">its own privacy policy</a>.</p>
+
+      <h2>In short</h2>
+      <ul>
+        <li>We never collect your name, email, browsing history, the addresses of pages you read, or the text you translate.</li>
+        <li>In On-device mode, everything happens on your computer and nothing is sent anywhere.</li>
+        <li>In Hybrid and Cloud mode, only small images of individual speech bubbles are sent to Google's Gemini to be read and translated.</li>
+        <li>We count anonymous totals (how many pages, in which mode) to understand how the tool is used, and keep feedback you choose to send us.</li>
+        <li>We don't sell data, show ads, or share data with anyone except the Google services listed below.</li>
+      </ul>
+
+      <h2>What happens on your computer</h2>
+      <p>When you press Translate, the extension takes a screenshot of the visible tab to find the manga page and its speech bubbles. Files you open (images, PDF, CBZ, CBR, EPUB) are read in your browser. This analysis runs locally; screenshots and files are not uploaded or stored by us. In On-device mode, Gemini Nano, the AI model built into Chrome, reads and translates each bubble on your computer.</p>
+
+      <h2>What is sent to the cloud</h2>
+      <p>In Hybrid mode, bubbles that the on-device model finds hard (for example vertical Japanese text) are sent to Gemini in the cloud. In Cloud mode, every bubble is. What is sent is a small cropped image of one speech bubble at a time, together with the target language and any character names you added. It goes through Firebase AI Logic to Google's Gemini models and is used only to return the translation. We do not store these images or their text. Google processes them under the <a href="https://firebase.google.com/terms/data-processing-terms">Firebase data processing terms</a>. If Gemini Nano is not available, the extension and website ask before sending anything to the cloud.</p>
+
+      <h2>What is stored</h2>
+      <ul>
+        <li><b>Settings on your device:</b> your chosen mode and language, and character names you add, are kept in your browser's storage.</li>
+        <li><b>Shared character names (optional):</b> if "Share names with other readers of this series" is on, the names you add are saved in our database under the series name, so other readers of that series get the same spelling. They are not linked to you. You can turn sharing off at any time.</li>
+        <li><b>Anonymous usage counts:</b> after each translation we record the mode, the number of pages and bubbles, how many were read on-device or in the cloud, and how long it took, with a random anonymous ID so we can count distinct browsers. No images, text, page addresses or titles. These records are combined into daily totals within about 15 minutes and then deleted.</li>
+        <li><b>Feedback you send:</b> if you use the Feedback button or answer "How was this translation?", we store your message, the kind of feedback, your rating, and your email only if you type it in. Unless you untick the box, we also attach the details of your last translation: mode, language, bubble counts, timings and browser version. Never page images, page text or page addresses. We use it only to fix problems and improve Mangit, and you can ask us to delete it.</li>
+        <li><b>Anonymous ID:</b> a random Firebase sign-in ID for your browser, with no account, name or email, used for the counts above and to protect our services from abuse.</li>
+        <li><b>Abuse protection:</b> Firebase App Check and Google reCAPTCHA (on the website) verify that requests come from our app, not from automated scripts.</li>
+      </ul>
+
+      <h2>Services we use</h2>
+      <p>Google Firebase (AI Logic with Gemini, App Check, Authentication, Firestore, Remote Config, Hosting) and Google reCAPTCHA Enterprise on the website. The website also uses Cloudflare Web Analytics, which is cookieless and does not track individuals.</p>
+
+      <h2>Chrome Web Store user data policy</h2>
+      <p>The use of information received from Google APIs and the browser adheres to the Chrome Web Store User Data Policy, including the Limited Use requirements. Data is used only to provide the translation feature, is not sold, is not used for advertising, and is not used to determine creditworthiness or for lending purposes.</p>
+
+      <h2>Permissions the extension asks for</h2>
+      <ul>
+        <li><b>Read and change data on websites you visit:</b> to find the manga images on the page you are reading and draw the translation over them. Pages are only read when you press Translate.</li>
+        <li><b>Side panel:</b> to show the translator next to the page.</li>
+        <li><b>Storage:</b> to remember your settings and character names on your device.</li>
+      </ul>
+
+      <h2>Your choices</h2>
+      <p>Use On-device mode to keep everything on your computer. Turn off name sharing in the side panel. Remove the extension to delete its local data. For questions or deletion requests, email <a href="mailto:team@measify.com">team@measify.com</a>.</p>
+
+      <h2>Who we are</h2>
+      <p>Mangit Web and Mangit for Chrome are made by Measify Kft, the team behind <a href="https://mangit.app/">Mangit</a>. The source code is public at <a href="https://github.com/mirzemehdi/mangit-web">github.com/mirzemehdi/mangit-web</a>.</p>
+    </main>
+    <footer class="site-foot">
+      <div class="wrap foot-row">
+        <p>© 2026 Measify Kft · Mangit</p>
+        <nav aria-label="Footer"><a href="./">Web translator</a> <a href="https://mangit.app/">Mangit app</a> <a href="https://mangit.app/terms-conditions">Terms</a></nav>
+      </div>
+    </footer>
+  </body>
+</html>

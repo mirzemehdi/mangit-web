@@ -13,6 +13,9 @@ import { join } from "node:path";
 
 const watch = process.argv.includes("--watch");
 const prod = process.argv.includes("--prod");
+// --store: the Chrome Web Store package carries its own App Check debug token,
+// so revoking the judging token later doesn't break installed copies.
+const store = process.argv.includes("--store");
 
 function loadEnv() {
   const env = {};
@@ -66,7 +69,11 @@ rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist", { recursive: true });
 cpSync("public", "dist", { recursive: true });
 for (const f of ["manifest.json", "sidepanel.html", "sidepanel.css", "overlay.css"]) cpSync(`src/${f}`, `dist/${f}`);
-const extDefine = defines({ LENS_TARGET: "extension" });
+const extDefine = defines({
+  LENS_TARGET: "extension",
+  ...(store ? { APP_CHECK_DEBUG_TOKEN: env.STORE_APP_CHECK_DEBUG_TOKEN } : {}),
+});
+if (store && !env.STORE_APP_CHECK_DEBUG_TOKEN) throw new Error("STORE_APP_CHECK_DEBUG_TOKEN missing in .env.local");
 // Extension's "Open a chapter" page: the web demo's reader, extension config.
 for (const f of ["library.html"]) cpSync(`src/${f}`, `dist/${f}`);
 cpSync("web/app.css", "dist/app.css");
@@ -94,8 +101,10 @@ cpSync("web", "web-dist", { recursive: true });
 // Hosted under a sub-path (mangit.app/translate/): relative URLs need a base.
 {
   const base = process.env.WEB_BASE;
-  const page = join("web-dist", "index.html");
-  writeFileSync(page, readFileSync(page, "utf8").replace("<!--BASE-->", base ? `<base href="${base}" />` : ""));
+  for (const f of ["index.html", "privacy.html"]) {
+    const page = join("web-dist", f);
+    writeFileSync(page, readFileSync(page, "utf8").replace("<!--BASE-->", base ? `<base href="${base}" />` : ""));
+  }
   const reader = join("web-dist", "reader.html");
 }
 cpSync("src/overlay.css", "web-dist/overlay.css");

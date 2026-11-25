@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Mangit: Manga Translator for Chrome",
   "short_name": "Mangit",
-  "version": "0.1.0",
-  "description": "Free manga, manhwa and manhua translator. Gemini Nano reads speech bubbles on your computer; hard bubbles go to the cloud. By Mangit.",
+  "version": "0.2.0",
+  "description": "Translate manga, manhwa and manhua on any website. Free, about 2 seconds a page, with on-device AI when Chrome has it.",
   "minimum_chrome_version": "139",
   "icons": {
     "16": "icons/icon16.png",

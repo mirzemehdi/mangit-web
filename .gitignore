@@ -15,3 +15,5 @@ video/film/node_modules/
 video/*.mp4
 bench/e2e/
 functions/node_modules/
+store/*.zip
+store/raw/
